@@ -1,0 +1,331 @@
+﻿@model IEnumerable<W.Areas.Member.ViewModel.MemberIdWish>
+@{
+    ViewBag.Title = "LoginAfter";
+}
+
+<h2>LoginAfter</h2>
+@section styles{
+    
+    
+
+    <style>
+        
+
+     
+         
+
+        #labelGame1,#labelGame2,#labelGame3{         
+            padding-right:5px;                
+        }
+         /*#checkbox-1{         
+            margin-left:100px;                
+        }*/
+        /*#labelGame1{
+            margin-right:5px;
+        }*/
+        #divSelect1,#divSelect2{
+             width:250px;
+          float:left;
+        }
+        #divWishSelect{
+            margin-bottom:15px;
+        }
+        #divAddButton,#divRemoveButton{
+            float:left;
+            width:70px;
+        }
+        #divRemoveButton{
+            margin-left:1em;
+        }
+      #divCheckBox{
+          width:330px;
+          float:left;
+      }
+        #CreateButton{
+            margin-left:1em;
+        }
+        #accordion{
+            width:350px;
+            float:left;
+        }
+        
+       /*#labelGame1{
+           float:left;
+       }*/
+       /*#divSelect2{
+           
+           width:250px;
+           float:left;
+       }*/
+    </style>
+    }
+
+
+
+@*<div id="tabs">
+    <ul>
+        <li><a href="#tabs-1">個人資料</a></li>
+        <li><a href="#tabs-2">遊玩紀錄</a></li>
+        <li><a href="#tabs-3">願望清單</a></li>
+    </ul>
+    <div id="tabs-1">
+        <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
+    </div>
+    <div id="tabs-2">
+        <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+    </div>
+    <div id="tabs-3">*@
+
+               
+<div class="container">
+
+@using (Html.BeginForm("AddWishlist", "Home", new { area = "Member" }, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <div id="divSelect1">
+    <label id="labelGame1" for="speed1">遊戲</label>
+        
+
+        @*@{
+            var games = new SelectList((IEnumerable<W.Areas.Member.Models.tGame>)TempData["gamename"], "fGameID", "fGameName_TC");
+        }
+        @Html.DropDownListFor(p => p.First().fGameID, games, "請選擇", new { @class = "form-control" })*@
+
+       
+
+
+    @*<select name="fGameID" id="speed1" >*@
+        @Html.Action("LoadGameName", "Home", new { area = "Member" })
+      
+    @*</select>*@
+</div>
+
+
+    <div id="divCheckBox">
+
+
+        <label for="checkbox-1">想玩</label>
+        <input type="checkbox" name="fWantToPlay" value="true" id="checkbox-1">
+
+        <label for="checkbox-2">想買</label>
+        <input type="checkbox" name="fWantToBuy" value="true" id="checkbox-2">
+
+        <label for="checkbox-3">想賣</label>
+        <input type="checkbox" name="fWantToSale" value="true" id="checkbox-3">
+
+        <label for="checkbox-4">收藏</label>
+        <input type="checkbox" name="fOwn" value="true" id="checkbox-4">
+    </div>
+    <button id="CreateButton">新增</button>
+}
+    <hr />
+
+    @*<div id="divWishSelect">
+        <label id="labelGame3" for="speed3">種類</label>
+        <select name="speed3" id="speed3">
+            <option selected="selected">想玩</option>
+            <option>想買</option>
+            <option >想賣</option>
+            <option>收藏</option>
+           
+        </select>
+    </div>*@
+
+    @*<div id="divSelect2">
+        <label id="labelGame2" for="speed2">遊戲</label>
+        <select name="speed2" id="speed2">
+          @Html.Action("LoadGameName","Home",new { area="Member"})
+           
+        </select>
+
+        
+    </div>
+
+    <div id="divAddButton">
+        <button id="AddButton">加入</button>
+    </div>*@
+
+    <div id="accordion">
+        <h3>想玩</h3>
+        <div>
+                        
+                @foreach(var c in Model)
+                {
+                    if(c.fWantToPlay==true)
+                    {
+                        <p data-want="play" data-gameid="@c.fGameID" data-selected="false">@c.fGameName_TC</p>
+                    }
+                }
+
+        </div>
+        <h3>想買</h3>
+        <div>
+            @foreach (var c in Model)
+            {
+                if (c.fWantToBuy == true)
+                {
+                    <p data-want="buy" data-gameid="@c.fGameID" data-selected="false">@c.fGameName_TC</p>
+                }
+            }
+        </div>
+        <h3>想賣</h3>
+        <div>
+            @foreach (var c in Model)
+            {
+                if (c.fWantToSale == true)
+                {
+                    <p data-want="sale" data-gameid="@c.fGameID" data-selected="false">@c.fGameName_TC</p>
+                }
+            }
+            
+        </div>
+        <h3>收藏</h3>
+        <div>
+            @foreach (var c in Model)
+            {
+                if (c.fOwn == true)
+                {
+                    <p data-want="own" data-gameid="@c.fGameID" data-selected="false">@c.fGameName_TC</p>
+                }
+            }
+           
+        </div>
+    </div>
+
+    <div id="divRemoveButton">
+        <button id="RemoveButton">移除</button>
+    </div>
+
+    
+</div>
+            
+    @*</div>
+</div>*@
+
+
+
+
+
+
+
+
+
+
+@section scripts{        
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+    <script>
+        $(function () {
+
+            @*$('#accordion').on('click', 'button', function () {
+                //var theP;
+                //$("#accordion p[data-want]").each(function () {
+                //    if ($(this).attr("data-selected") == "true")
+                //        theP = $(this);
+                //})
+                var theP = $('#accordion p[data-selected="true"]');
+                $.get("@Url.Action("UpdateWishlist","Home",new { area="Member"})", { "gameid": theP.attr("data-gameid"), "want": theP.attr("data-want") });
+                //theP.Find("button").remove();
+                theP.remove();
+               // $("button").remove(".btn")
+               //console.log($('#accordion '))
+            })*@
+
+            //主要
+            @*$("#accordion p[data-want]").mouseover(function () {
+                $(this).css("cursor", "pointer")
+            }).click(function () {
+                $("button").remove(".btn");
+                $("#accordion p[data-want]").each(function () {
+                    $(this).css("color", "black").attr("data-selected", "false")
+                });
+                $(this).css("color", "red").attr("data-selected", "true");
+                var btn = $("<button></button>").addClass("btn btn-default btn-xs btn-primary").text("X");
+                $(this).append(btn);
+                $("#accordion button").click(function () {
+                    var theP = $('#accordion p[data-selected="true"]')
+                    $.get("@Url.Action("UpdateWishlist","Home",new { area="Member"})", { "gameid": theP.attr("data-gameid"), "want": theP.attr("data-want") })
+                    $(this).parent().remove();
+                });
+            });*@
+
+
+            $("#accordion p[data-want]").mouseover(function () {
+                $(this).css("cursor", "pointer")
+            }).click(function () {
+
+                if ($(this).attr("data-selected") == "false")
+                    $(this).attr("data-selected", "true")
+                else
+                    $(this).attr("data-selected", "false")
+
+
+                if ($(this).attr("data-selected") == "false")
+                    $(this).css("color", "black")
+                else
+                    $(this).css("color", "red")
+
+
+
+            });
+            $("#RemoveButton").click(function () {
+
+                $('#accordion p[data-selected="true"]').each(function () {
+                    var gameid=$(this).attr("data-gameid")
+                    var want=$(this).attr("data-want")
+                    
+                    $.get("@Url.Action("UpdateWishlist","Home",new { area="Member"})", {"gameid":gameid,"want":want})
+                    $(this).remove();
+
+                })
+
+            })
+
+
+
+
+
+            $("#accordion p[data-want]").each(function () { $(this).css({ "margin": "0px", "font-size": "1.5em", "color": "black", "width": "auto" }) });
+
+
+
+            @*$("#RemoveButton").click(function () {
+                var theP;
+                $("#accordion p[data-want]").each(function () {
+                    if ($(this).attr("data-selected") == "true")
+                        theP = $(this);
+                })
+                $.get("@Url.Action("UpdateWishlist","Home",new { area="Member"})", {"gameid":theP.attr("data-gameid"),"want":theP.attr("data-want")})
+               theP.remove();
+            })*@
+
+
+            $("#tabs").tabs();
+
+            $("#speed1,#speed2,#speed3").selectmenu();
+
+            $("#files").selectmenu();
+
+            $("#number")
+              .selectmenu()
+              .selectmenu("menuWidget")
+                .addClass("overflow");
+
+            $("#salutation").selectmenu();
+
+
+            $("#divCheckBox>input").checkboxradio();
+
+            //tabs-3裡面的Button
+            $("#CreateButton,#AddButton,#RemoveButton").button();
+            //$("#createButton").click(function (event) {
+            //    event.preventDefault();
+            //});
+
+
+            $("#accordion").accordion();
+
+
+        });
+    </script>
+    
+    }
+

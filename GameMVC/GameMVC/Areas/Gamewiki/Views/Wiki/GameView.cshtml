@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "GameView";
+}
+@section styles{
+<link href="~/Content/GameViewBar.css" rel="stylesheet" />
+<link href="~/Content/rating.css" rel="stylesheet" />
+<link href="~/Content/zoom.css" rel="stylesheet" />
+}
+
+<div class="row">
+    <div class="col-lg-4">
+        <img data-action="zoom" src="http://fakeimg.pl/365x365/" width="360" height="360">
+    </div>
+    <div class="col-lg-8">
+        <div class="container-fluid">
+            <nav class="navbar navbar-default">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">遊戲基礎資訊</a>
+                        <!--遊戲名稱(中英文)、遊戲主題、遊玩人數、遊玩時間、適合年齡、遊戲評分、-->
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#">遊戲機制</a></li>
+                            <li><a href="#">遊戲類別</a></li>
+                            <li><a href="#">內容物資訊</a></li>
+                            <li><a href="#">遊戲分數</a></li>
+                            <li>
+                                <a class="btn btn-default btn-outline btn-circle" data-toggle="collapse" href="#nav-collapse1" aria-expanded="false" aria-controls="nav-collapse1">其它資訊</a>
+                            </li>
+                        </ul>
+                        <ul class="collapse nav navbar-nav nav-collapse" id="nav-collapse1">
+                            <li><a href="#">商城搜尋</a></li>
+                            <li><a href="#">出版年份</a></li>
+                            <li><a href="#">出版商</a></li>
+                            <li><a href="#">設計師</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <p>選上面這邊跑出內容</p>
+    </div>
+</div>
+<p>@Html.ActionLink("《編輯內容》", "GameInsert", "Wiki",new { area = "Gamewiki" })</p>
+<br />
+<div>
+    <p>遊戲介紹放這裡</p>
+    <div class="container"> 
+        <div class="text-left">
+             <div class="stars starrr" data-rating="0"></div>
+             <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
+             <span class="glyphicon glyphicon-remove"></span>Cancel</a>
+             <button class="btn btn-success btn-lg" type="submit">我要評分</button>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+<script src="~/Scripts/rating.js"></script>
+<script src="~/Scripts/zoom.js"></script>
+}

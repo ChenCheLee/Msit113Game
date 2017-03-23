@@ -1,0 +1,8 @@
+﻿@model IEnumerable<W.Areas.Member.Models.tGame>
+
+<select name="fGameID" id="speed1">
+    @foreach (var c in Model)
+    {
+        <option value="@c.fGameID">@c.fGameName_TC</option>
+    }
+</select>

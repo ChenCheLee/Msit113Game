@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GAMEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tBuyRecord">
+    <Key>
+      <PropertyRef Name="fBuyRecordID" />
+    </Key>
+    <Property Name="fBuyRecordID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fSalerID" Type="int" Nullable="false" />
+    <Property Name="fBuyerID" Type="int" />
+    <Property Name="fProductID" Type="int" Nullable="false" />
+    <Property Name="fBuyDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="fBuyCount" Type="int" />
+    <Property Name="fProductPrice" Type="int" />
+  </EntityType>
+  <EntityType Name="tCart">
+    <Key>
+      <PropertyRef Name="fCartID" />
+    </Key>
+    <Property Name="fCartID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fMemberID" Type="int" Nullable="false" />
+    <Property Name="fProductID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tGame">
+    <Key>
+      <PropertyRef Name="fGameID" />
+    </Key>
+    <Property Name="fGameID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fGameName_TC" Type="nvarchar(max)" />
+    <Property Name="fGameName_EN" Type="nvarchar(max)" />
+    <Property Name="fMaxPlayer" Type="tinyint" />
+    <Property Name="fMinPlayer" Type="tinyint" />
+    <Property Name="fGameAge" Type="int" />
+    <Property Name="fMaxPlayTime" Type="tinyint" />
+    <Property Name="fMinPlayTime" Type="tinyint" />
+    <Property Name="fGameDescription" Type="nvarchar(max)" />
+    <Property Name="fCardSize" Type="nvarchar" MaxLength="50" />
+    <Property Name="fCardCount" Type="int" />
+    <Property Name="fPublishYear" Type="int" />
+    <Property Name="fRank" Type="decimal" Precision="18" Scale="1" />
+  </EntityType>
+  <EntityType Name="tMember">
+    <Key>
+      <PropertyRef Name="fMemberID" />
+    </Key>
+    <Property Name="fMemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fMemberAccount" Type="nvarchar" MaxLength="50" />
+    <Property Name="fMemberPassWord" Type="nvarchar" MaxLength="50" />
+    <Property Name="fMemberEmail" Type="nvarchar(max)" />
+    <Property Name="fMemberName" Type="nvarchar" MaxLength="50" />
+    <Property Name="fMemberNickName" Type="nvarchar" MaxLength="50" />
+    <Property Name="fMemberGender" Type="nvarchar" MaxLength="50" />
+    <Property Name="fMemberPermission" Type="int" />
+    <Property Name="fMemberPhone" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tTrade">
+    <Key>
+      <PropertyRef Name="fTradeID" />
+    </Key>
+    <Property Name="fTradeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fSalerID" Type="int" Nullable="false" />
+    <Property Name="fProductID" Type="int" Nullable="false" />
+    <Property Name="fProductPicture" Type="varbinary(max)" />
+    <Property Name="fProductIfon" Type="nvarchar" MaxLength="50" />
+    <Property Name="fProductPrice" Type="int" />
+    <Property Name="fOnshelfDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="fProductQuantity" Type="int" />
+    <Property Name="fProductDescription" Type="nvarchar" MaxLength="50" />
+    <Property Name="fProductRegion" Type="nchar" MaxLength="10" />
+    <Property Name="fPayment" Type="nvarchar" MaxLength="50" />
+    <Property Name="fSalerContact" Type="nvarchar" MaxLength="50" />
+    <Property Name="fPickup" Type="nvarchar" MaxLength="50" />
+    <Property Name="fKey" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tWishlist">
+    <Key>
+      <PropertyRef Name="fWishlistID" />
+    </Key>
+    <Property Name="fWishlistID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fMemberID" Type="int" />
+    <Property Name="fGameID" Type="int" />
+    <Property Name="fWantToPlay" Type="bit" />
+    <Property Name="fWantToBuy" Type="bit" />
+    <Property Name="fWantToSale" Type="bit" />
+    <Property Name="fOwn" Type="bit" />
+  </EntityType>
+  <Association Name="FK_tBuyRecord_tGame">
+    <End Role="tGame" Type="Self.tGame" Multiplicity="1" />
+    <End Role="tBuyRecord" Type="Self.tBuyRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tGame">
+        <PropertyRef Name="fGameID" />
+      </Principal>
+      <Dependent Role="tBuyRecord">
+        <PropertyRef Name="fProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_收藏清單_會員">
+    <End Role="tMember" Type="Self.tMember" Multiplicity="0..1" />
+    <End Role="tWishlist" Type="Self.tWishlist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMember">
+        <PropertyRef Name="fMemberID" />
+      </Principal>
+      <Dependent Role="tWishlist">
+        <PropertyRef Name="fMemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_收藏清單_遊戲資訊">
+    <End Role="tGame" Type="Self.tGame" Multiplicity="0..1" />
+    <End Role="tWishlist" Type="Self.tWishlist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tGame">
+        <PropertyRef Name="fGameID" />
+      </Principal>
+      <Dependent Role="tWishlist">
+        <PropertyRef Name="fGameID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_商城_遊戲資訊">
+    <End Role="tGame" Type="Self.tGame" Multiplicity="1" />
+    <End Role="tTrade" Type="Self.tTrade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tGame">
+        <PropertyRef Name="fGameID" />
+      </Principal>
+      <Dependent Role="tTrade">
+        <PropertyRef Name="fProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_銷售紀錄_會員">
+    <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+    <End Role="tBuyRecord" Type="Self.tBuyRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMember">
+        <PropertyRef Name="fMemberID" />
+      </Principal>
+      <Dependent Role="tBuyRecord">
+        <PropertyRef Name="fSalerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_銷售紀錄_會員1">
+    <End Role="tMember" Type="Self.tMember" Multiplicity="0..1" />
+    <End Role="tBuyRecord" Type="Self.tBuyRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMember">
+        <PropertyRef Name="fMemberID" />
+      </Principal>
+      <Dependent Role="tBuyRecord">
+        <PropertyRef Name="fBuyerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GAMEModelStoreContainer">
+    <EntitySet Name="tBuyRecord" EntityType="Self.tBuyRecord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tCart" EntityType="Self.tCart" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tGame" EntityType="Self.tGame" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tMember" EntityType="Self.tMember" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tTrade" EntityType="Self.tTrade" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tWishlist" EntityType="Self.tWishlist" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tBuyRecord_tGame" Association="Self.FK_tBuyRecord_tGame">
+      <End Role="tGame" EntitySet="tGame" />
+      <End Role="tBuyRecord" EntitySet="tBuyRecord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_收藏清單_會員" Association="Self.FK_收藏清單_會員">
+      <End Role="tMember" EntitySet="tMember" />
+      <End Role="tWishlist" EntitySet="tWishlist" />
+    </AssociationSet>
+    <AssociationSet Name="FK_收藏清單_遊戲資訊" Association="Self.FK_收藏清單_遊戲資訊">
+      <End Role="tGame" EntitySet="tGame" />
+      <End Role="tWishlist" EntitySet="tWishlist" />
+    </AssociationSet>
+    <AssociationSet Name="FK_商城_遊戲資訊" Association="Self.FK_商城_遊戲資訊">
+      <End Role="tGame" EntitySet="tGame" />
+      <End Role="tTrade" EntitySet="tTrade" />
+    </AssociationSet>
+    <AssociationSet Name="FK_銷售紀錄_會員" Association="Self.FK_銷售紀錄_會員">
+      <End Role="tMember" EntitySet="tMember" />
+      <End Role="tBuyRecord" EntitySet="tBuyRecord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_銷售紀錄_會員1" Association="Self.FK_銷售紀錄_會員1">
+      <End Role="tMember" EntitySet="tMember" />
+      <End Role="tBuyRecord" EntitySet="tBuyRecord" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

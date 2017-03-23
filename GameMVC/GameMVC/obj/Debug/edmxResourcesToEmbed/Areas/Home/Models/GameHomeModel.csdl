@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GAMEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tGame">
+    <Key>
+      <PropertyRef Name="fGameID" />
+    </Key>
+    <Property Name="fGameID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fGameName_TC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fGameName_EN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fMaxPlayer" Type="Byte" />
+    <Property Name="fMinPlayer" Type="Byte" />
+    <Property Name="fGameAge" Type="Int32" />
+    <Property Name="fMaxPlayTime" Type="Byte" />
+    <Property Name="fMinPlayTime" Type="Byte" />
+    <Property Name="fGameDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fCardSize" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fCardCount" Type="Int32" />
+    <Property Name="fPublishYear" Type="Int32" />
+    <Property Name="fRank" Type="Decimal" Precision="18" Scale="1" />
+    <NavigationProperty Name="tGameFile" Relationship="Self.FK_遊戲檔案_遊戲資訊" FromRole="tGame" ToRole="tGameFile" />
+  </EntityType>
+  <EntityType Name="tGameFile">
+    <Key>
+      <PropertyRef Name="fGameFileID" />
+    </Key>
+    <Property Name="fGameFileID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fGameFileType" Type="Int32" />
+    <Property Name="fGameFileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fGameID" Type="Int32" />
+    <Property Name="fGameFileSite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fGameFileBinary" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="tGame" Relationship="Self.FK_遊戲檔案_遊戲資訊" FromRole="tGameFile" ToRole="tGame" />
+    <NavigationProperty Name="tGameFileType" Relationship="Self.FK_遊戲檔案_檔案類型" FromRole="tGameFile" ToRole="tGameFileType" />
+  </EntityType>
+  <EntityType Name="tGameFileType">
+    <Key>
+      <PropertyRef Name="fGameFileTypeID" />
+    </Key>
+    <Property Name="fGameFileTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fGameFileTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tGameFile" Relationship="Self.FK_遊戲檔案_檔案類型" FromRole="tGameFileType" ToRole="tGameFile" />
+  </EntityType>
+  <Association Name="FK_遊戲檔案_遊戲資訊">
+    <End Role="tGame" Type="Self.tGame" Multiplicity="0..1" />
+    <End Role="tGameFile" Type="Self.tGameFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tGame">
+        <PropertyRef Name="fGameID" />
+      </Principal>
+      <Dependent Role="tGameFile">
+        <PropertyRef Name="fGameID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_遊戲檔案_檔案類型">
+    <End Role="tGameFileType" Type="Self.tGameFileType" Multiplicity="0..1" />
+    <End Role="tGameFile" Type="Self.tGameFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tGameFileType">
+        <PropertyRef Name="fGameFileTypeID" />
+      </Principal>
+      <Dependent Role="tGameFile">
+        <PropertyRef Name="fGameFileType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GameHomeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tGame" EntityType="Self.tGame" />
+    <EntitySet Name="tGameFile" EntityType="Self.tGameFile" />
+    <EntitySet Name="tGameFileType" EntityType="Self.tGameFileType" />
+    <AssociationSet Name="FK_遊戲檔案_遊戲資訊" Association="Self.FK_遊戲檔案_遊戲資訊">
+      <End Role="tGame" EntitySet="tGame" />
+      <End Role="tGameFile" EntitySet="tGameFile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_遊戲檔案_檔案類型" Association="Self.FK_遊戲檔案_檔案類型">
+      <End Role="tGameFileType" EntitySet="tGameFileType" />
+      <End Role="tGameFile" EntitySet="tGameFile" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

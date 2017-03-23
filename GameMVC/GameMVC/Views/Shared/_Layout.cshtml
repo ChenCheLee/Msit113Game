@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - DrawJoChee</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/search1.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+    <!-- Font Awesome -->
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/responsive.css" rel="stylesheet" />
+    <link href="~/Content/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Content/Nacbar.css" rel="stylesheet" />
+    <style>
+
+    </style>
+    @RenderSection("styles", false)
+</head>
+<body>
+    <div id="bgImage">
+        <header id="header">
+            <div class="navbar navbar-inverse navbar-fixed-top " id="headerNav">
+                <div>
+                    @Html.ActionLink("dd", "Index", "Home", new { area = "" }, new { @class = "headerTitle" })
+                </div>
+
+                <div class="header_search_box" style="float:left; margin-left:50px; margin-right:20px;">
+                    <form method="get" id="custom-search-form" class="form-search form-horizontal pull-right">
+                        <div class="container">
+                            <div class="row">
+                                <div class="span12">
+                                    <div class="input-append span12">
+                                        <input type="text" class="search-query" style="padding:0px;" placeholder="Search">   @*因為style.css中 input[type="Text"]的數值不知為何調不掉 所以直接設padding=0*@
+                                        <button type="submit" class="btn"><i class="glyphicon glyphicon-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <label>
+                            <input type="radio" name="searchType" />
+                            遊戲資訊 |
+                        </label>
+                        <label>
+                            <input type="radio" name="searchType" />
+                            交易市場 |
+                        </label>
+                        <label>
+                            <input type="radio" name="searchType" />
+                            配對團
+                        </label>
+                    </form>
+                </div>
+                <div>
+                    @Html.ActionLink("遊戲資訊", "Index", "Wiki", new { area = "Gamewiki" }, new { @class = "menu navmenu" })
+                </div>
+                <div>
+                    @Html.ActionLink("交易市場", "Index", "Home", new { area = "Market" }, new { @class = "menu navmenu" })
+                </div>
+                <div>
+                    @Html.ActionLink("揪團專區", "Index", "Group", new { area = "揪團" }, new { @class = "menu navmenu" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav" id="subheader">
+                        @if (Request.Cookies["account"] == null)
+                        {
+                            <li style="top:-4px;">
+                                @Html.ActionLink("會員註冊", "Index", "Home", new { area = "Member" }, new { @class = "" })
+                            </li>
+                            <li style="top:-4px;">
+                                
+                                @Html.ActionLink("登入", "Login", "Home", new { area = "Member" }, new { @class = "" })
+                            </li>
+                        }
+                        else
+                        {
+                            <li style="top:-4px;">
+                                @Html.ActionLink("個人頁面", "myPage", "Member")
+                            </li>
+                            <li style="top:-4px;">
+                                @Html.ActionLink("登出", "Logout", "Home",new { area = "" },new { @class = "" })
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="menu">
+                <div class="btnmenu1">
+                    <span id="btnmenu" style="cursor:pointer;">
+                        <img src='@Url.Action("menu-icon.png","Images",new { area = "" })' style="margin:-7px 0 0 7px" />
+                    </span>
+                </div>
+                <div class="btnmenu2">
+                    <img src='@Url.Action("logo1.png","Images",new { area = "" })' style="margin-left:85px;float:left" />
+                </div>
+                <div>
+                    @Html.ActionLink("遊戲資訊", "Index", "Wiki", new { area = "Gamewiki" }, new { @class = "btnmenu3" })
+                </div>
+                <div>
+                    @Html.ActionLink("交易市場", "Index", "Home", new { area = "Market" }, new { @class = "btnmenu4" })
+                </div>
+                <div>
+                    @Html.ActionLink("揪團專區", "Index", "Group", new { area = "揪團" }, new { @class = "btnmenu5" })
+                </div>
+            </div>
+
+        </header>
+        <div class="bookmark">
+            <div class="bookmark-menu">
+
+            </div>
+            <div class="bookmark-icon">
+                <img src='@Url.Action("bookmark1.png","Images",new { area = "" })' />
+            </div>
+        </div>
+            @RenderBody()
+           
+
+            <hr />
+
+    </div>
+
+    <footer style="clear:both;background-color:black;width:100%;height:180px;margin-bottom:-50px;margin-top:-80px;">
+    </footer>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+           
+            var head = $('#header');
+            $('#btnmenu').click(function () {
+                if (head.hasClass('open')) {
+                    head.addClass('unTop');
+                    head.removeClass('open');
+                } else {
+                    head.removeClass('unTop');
+                    head.addClass('open');
+                }
+            })
+            head.mouseleave(function () {
+                head.removeClass('open');
+            })
+            $(' #subheader>li>a').hover(function () {
+                $(this).css({ 'color': 'blue', 'text-decoration': 'underline' });
+            }, function () {
+                $(this).css({ 'color': '#999', 'text-decoration': 'none' });
+            })
+
+            $(window).scroll(function() {
+                if ( $(this).scrollTop() > 50){
+                    head.addClass('unTop');
+                } else {
+                    head.removeClass('unTop');
+                }
+            });
+
+            var bookmark = $('.bookmark');
+            $('.bookmark>.bookmark-icon').hover(function(){
+                $(this).find('img').attr('src','@Url.Action("bookmark2.png", "Images", new { area=""})');
+            },function(){
+                $(this).find('img').attr('src', '@Url.Action("bookmark1.png","Images",new { area = "" })');
+            });
+
+            $('.bookmark>.bookmark-icon').click(function () {
+                if (bookmark.hasClass('bookmark-open')) {
+                    bookmark.removeClass('bookmark-open');
+                } else {
+                    bookmark.addClass('bookmark-open');
+                }
+            });
+
+            bookmark.mouseleave(function () {
+                bookmark.removeClass('bookmark-open');
+            })
+        })
+
+    </script>
+    <!-- jQuery sticky menu -->
+    @*<script src="~/Scripts/owl.carousel.min.js"></script>*@
+    <script src="~/Scripts/jquery.sticky.js"></script>
+    <!-- jQuery easing -->
+    <script src="~/Scripts/jquery.easing.1.3.min.js"></script>
+    <!-- Main Script -->
+    @*<script src="~/Scripts/main.js"></script>*@
+    <!-- Slider -->
+    <script src="~/Scripts/bxslider.min.js"></script>
+    <script src="~/Scripts/script.slider.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    @RenderSection("scripts", false)
+
+</body>
+</html>

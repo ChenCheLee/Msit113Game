@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "GameInsert";
+}
+@section CSS{
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://bootswatch.com/cosmo/bootstrap.min.css">
+}
+
+<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h1 class="panel-title pull-left" style="font-size:30px;">新增/編輯遊戲</h1>
+        </div>
+    </div>
+    <div class="panel panel-default row">
+        <div class="panel-body col-lg-6">
+            <h3 class="panel-title pull-left">基礎資訊</h3>
+            <br><br>
+            <form class="form-horizontal">
+                <label for="First_name">遊戲中文名稱</label>
+                <input type="text" class="form-control" id="First_name" placeholder="中文名稱">
+                <br />
+                <label for="Last_name">遊戲英文名稱</label>
+                <input type="email" class="form-control" id="Last_name" placeholder="英文名稱">
+                <br />
+                <label for="Last_name">遊戲主題</label>
+                <input type="email" class="form-control" id="Last_name" placeholder="遊戲主題">
+                <br />
+                <label for="Last_name">遊玩人數</label>
+                <input type="email" class="form-control" id="Last_name" placeholder="遊玩人數">
+                <br />
+                <label for="Last_name">適合年齡</label>
+                <input type="email" class="form-control" id="Last_name" placeholder="適合年齡">
+                <br />
+                <label for="Last_name">遊玩時間</label>
+                <input type="email" class="form-control" id="Last_name" placeholder="遊玩時間">
+
+            </form>
+        </div>
+        <div class="panel panel-default col-lg-6">
+            <div class="panel-body">
+                <h3 class="panel-title pull-left">遊戲照片</h3>
+                <br><br>
+                <div align="center">
+                    <div class="col-lg-12 col-md-12">
+                        <img class="img-thumbnail img-responsive" src="https://lut.im/7JCpw12uUT/mY0Mb78SvSIcjvkf.png" width="300px" height="300px">
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <button class="btn btn-primary"><i class="fa fa-upload" aria-hidden="true"></i> 上傳封面照</button>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <label for="Last_name">遊戲類型</label>
+            <input type="email" class="form-control" id="Last_name" placeholder="遊戲類型">
+            <br />
+            <label for="Last_name">遊戲機制</label>
+            <input type="email" class="form-control" id="Last_name" placeholder="遊戲機制">
+        </div>
+    </div>
+    <div class="panel panel-default row">
+        <div class="panel-body col-lg-6">
+            <form class="form-horizontal">
+                <label for="Your_location">卡牌尺寸(單位:mm)</label>
+                <input type="text" class="form-control" id="Your_location" placeholder="Fill me out">
+                <br>
+                <label for="Your_gender">卡牌張數</label>
+                <input type="text" class="form-control" id="Your_gender" placeholder="Fill me out">
+                <br>
+                <label for="Your_gender">遊戲評分</label>
+                <input type="text" class="form-control" id="Your_gender" placeholder="Fill me out">
+                <br>
+                <label for="Your_gender">出版年份</label>
+                <input type="text" class="form-control" id="Your_gender" placeholder="Fill me out">
+                <br>
+                <label for="Your_gender">設計師</label>
+                <input type="text" class="form-control" id="Your_gender" placeholder="Fill me out">
+                <br>
+                <label for="Your_gender">出版商</label>
+                <input type="text" class="form-control" id="Your_gender" placeholder="Fill me out">
+                <br>
+            </form>
+        </div>
+        <div class="panel-body col-lg-6">
+            <form class="form-horizontal">
+                <label>遊戲簡述</label>
+                <textarea class="form-control" rows="20"></textarea>
+            </form>
+            <br />
+            <button class="btn btn-primary"><i class="fa fa-fw fa-check" aria-hidden="true"></i> 新增遊戲</button>
+            <button class="btn btn-default"><i class="fa fa-fw fa-times" aria-hidden="true"></i> 取消新增</button>
+        </div>
+    </div>
+</div>
+
+
+@section Script{}
+

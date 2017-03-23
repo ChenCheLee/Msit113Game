@@ -1,0 +1,79 @@
+﻿@model IEnumerable<GameMVC.Models.tPair>
+@{
+    ViewBag.Title = "Index";
+}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+#PairUl {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#PairLi{
+    padding: 0 0 0 10%;
+    margin: 0;
+}
+#tpairID{
+        width: 80%;
+       display: inline-block;
+}
+#note2{
+    display: inline-block;
+    width: 20%;
+}
+#btnli{
+    width:80px;
+}
+    </style>
+
+<body>
+    <hr />
+    <div class="container">
+        <h2>揪團列表</h2>
+        <ul class="list-group" id="PairUl">
+
+            @foreach (var _tpair in Model)
+            {
+                <li class="list-group-item list-group-item-heading list-group-item-success" id="PairLi" style="background-color:#dedbc6">
+                    <div id="1">
+                        <span class="note" id="tpairID"><label style="color:darkkhaki">揪團流水號:</label>@_tpair.fPairID</span>
+                        <span class="note1"><button type="button" class="btn btn-success" id="btnli">加入此團</button></span>
+                    </div>
+                    <div id="2">
+                        <span class="note" style="width:20%;display:inline-block;"><label style="color:darkgreen">團名:</label>@_tpair.fSquadName</span>
+                        <span class="note1" style="width:40%;display:inline-block;"><label style="color:darkgreen">開團地點:</label>@_tpair.fPlayLocation</span>
+                        <span class="note2" id="note2" style="width:40%;display:inline-block;"><label style="color:darkgreen">團長:</label>@_tpair.tMember.fMemberName</span>
+                    </div>
+                    <div id="3">
+                        <span class="note" style="width:30%;display:inline-block;"><label style="color:darkgreen">開團日期:</label>@_tpair.fSquadStartDate</span>
+                        <span class="note1" style="width:30%;display:inline-block;"><label style="color:darkgreen">最大人數:</label>@_tpair.fSquadMinPlayer</span>
+                        <span class="note2" style="width:40%;display:inline-block;"><label style="color:darkgreen">目前人數:</label>@(_tpair.tPairJoinMember.Count)</span>
+                    </div>
+                </li>
+            }
+            @*<li class="list-group-item"></li>
+                <li class="list-group-item"></li>
+                <li class="list-group-item"></li>
+                <li class="list-group-item"></li>*@
+
+        </ul>
+
+        <div id="btn">
+            <span id="1" style="width:30%;display:inline-block;padding: 10px 0 10px 14%;">
+                <a href="~/揪團/Group/Insert" class="btn btn-primary"><span class="glyphicon glyphicon-plane"></span> 創建揪團拉</a>
+                @*<button style="width:100px;" type="button" class="btn btn-success">創建揪團拉</button>*@
+            </span>
+            <span id="2" style="width:33%;display:inline-block;padding: 10px 0 10px 14%;">
+                @*<button style="width:100px;" type="button" class="btn btn-success">我的揪團</button>*@
+                <a href="~/揪團/Group/MyPair" style="width:100px;" class="btn btn-primary">我的揪團</a>
+            </span><span id="3" style="width:33%;display:inline-block;padding: 10px 0 10px 14%;">
+                <button style="width:100px;" type="button" class="btn btn-success">回上一頁</button>
+            </span>
+        </div>
+    </div>
+    <script>
+
+    </script>
+</body>
+

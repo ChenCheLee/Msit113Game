@@ -1,0 +1,68 @@
+﻿@model  IEnumerable<GameMVC.Models.tGame>
+
+<link href="~/Content/GameCard.css" rel="stylesheet" />
+<style>
+    .textH2Bold{
+        position:absolute;
+        font-size:60px;
+        color:white;
+        font-weight:bold;
+        font-style:italic;
+        margin-top:125px;
+        top:0;
+        right:0;
+        bottom:0;
+        left:0;
+    }
+</style>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <section id="t-cards" style="background-color:white;border-right:3px groove;border-left:3px groove;">
+        <div class="container ">
+            <h2 style="font-weight: bold;font-family:Microsoft JhengHei;">熱門推薦</h2>
+            <br />
+            @Html.Action("GameCard", "Home", new { area = "",id=0 })
+        </div>
+        <h2 style="font-weight: bold;font-family:Microsoft JhengHei;">近期上市</h2>
+            @Html.Action("GameCard", "Home", new { area = "", id = 1 })
+        <br />
+
+    </section>
+</div>
+
+
+<div class="GameWikiBar">
+    <span class="textH2Bold">
+        @Html.ActionLink("Go Find More!!", "Index", "Wiki", new { area = "Gamewiki" },new { style = "color:white;text-decoration:none;" })
+    </span>   
+
+</div>
+
+<div>
+    <h1>
+        SHOP NEW LIST GO HERE
+    </h1>
+</div>
+
+<div class="GameWikiBar" style="background-color:#3135ff">
+    <span class="textH2Bold" >
+        @Html.ActionLink("More Goods Here!!", "Index", "Home", new { area = "Market" }, new { style = "color:white;text-decoration:none;" })
+    </span>
+
+</div>
+
+<div>
+    <h1>
+        SHOW SOME PAIR HERE
+    </h1>
+</div>
+
+<div class="GameWikiBar" style="background-color:#ff9616">
+    <span class="textH2Bold" >
+        @Html.ActionLink("Come And Have More Fun!!", "Index", "Group", new { area = "揪團" }, new { style = "color:white;text-decoration:none;" })
+    </span>
+
+</div>

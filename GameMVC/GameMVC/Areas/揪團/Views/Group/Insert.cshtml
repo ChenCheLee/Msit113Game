@@ -1,0 +1,81 @@
+﻿@model IEnumerable<GameMVC.Models.tPair>
+@{
+    ViewBag.Title = "Insert";
+}
+
+<h2>創建揪團</h2>
+<form method="post" action="~/揪團/Group/Insert" class="form-horizontal">
+
+    <div class="form-group">
+        <label for="name"
+               class="col-sm-2 control-label">團長ID：</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" name="fMemberID" id="name" placeholder="請輸入" />
+        </div>
+    </div>
+
+    @*<div class="form-group">
+        <label for="name"
+               class="col-sm-2 control-label">團長姓名：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="fMemberName" id="name" placeholder="請輸入" />
+        </div>
+    </div>*@
+
+    <div class="form-group">
+        <label for="name"
+               class="col-sm-2 control-label">團名：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="fSquadName" id="name" placeholder="請輸入團名"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="desc"
+               class="col-sm-2 control-label">開團日期：</label>
+        <div class="col-sm-10">
+            <input type="date" class="form-control" name="fSquadStartDate" id="StartDate"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="name"
+               class="col-sm-2 control-label">結束日期:</label>
+        <div class="col-sm-10">
+            <input type="date" class="form-control" name="fSquadEndDate" id="EndDate"  />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="name"
+               class="col-sm-2 control-label">最大人數:</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" name="fSquadMaxPlayer" id="MaxPlayer" placeholder="請輸入" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="name"
+               class="col-sm-2 control-label">最小人數:</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" name="fSquadMinPlayer" id="MinPlayer" placeholder="請輸入" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="name"
+               class="col-sm-2 control-label">開團地點:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="fPlayLocation" id="PlayLocation" placeholder="請輸入" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Description">開團描述:</label>
+        <textarea class="form-control" rows="5" id="Description"></textarea>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">
+                送出創團
+            </button>
+        </div>
+    </div>
+</form>
+
+

@@ -1,0 +1,483 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GAMEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tActiveRegion">
+          <Key>
+            <PropertyRef Name="fActiveRegionID" />
+          </Key>
+          <Property Name="fActiveRegionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fActiveRegion" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tActiveRegionVSMember">
+          <Key>
+            <PropertyRef Name="fActiveRegionVSMemberID" />
+          </Key>
+          <Property Name="fActiveRegionVSMemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fMemberID" Type="int" />
+          <Property Name="fActiveRegionID" Type="int" />
+        </EntityType>
+        <EntityType Name="tGame">
+          <Key>
+            <PropertyRef Name="fGameID" />
+          </Key>
+          <Property Name="fGameID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fGameName_TC" Type="nvarchar(max)" />
+          <Property Name="fGameName_EN" Type="nvarchar(max)" />
+          <Property Name="fMaxPlayer" Type="tinyint" />
+          <Property Name="fMinPlayer" Type="tinyint" />
+          <Property Name="fGameAge" Type="int" />
+          <Property Name="fMaxPlayTime" Type="tinyint" />
+          <Property Name="fMinPlayTime" Type="tinyint" />
+          <Property Name="fGameDescription" Type="nvarchar(max)" />
+          <Property Name="fCardSize" Type="nvarchar" MaxLength="50" />
+          <Property Name="fCardCount" Type="int" />
+          <Property Name="fPublishYear" Type="int" />
+          <Property Name="fRank" Type="decimal" Precision="18" Scale="1" />
+        </EntityType>
+        <EntityType Name="tMember">
+          <Key>
+            <PropertyRef Name="fMemberID" />
+          </Key>
+          <Property Name="fMemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fMemberAccount" Type="nvarchar" MaxLength="50" />
+          <Property Name="fMemberPassWord" Type="nvarchar" MaxLength="50" />
+          <Property Name="fMemberEmail" Type="nvarchar(max)" />
+          <Property Name="fMemberName" Type="nvarchar" MaxLength="50" />
+          <Property Name="fMemberNickName" Type="nvarchar" MaxLength="50" />
+          <Property Name="fMemberGender" Type="nvarchar" MaxLength="50" />
+          <Property Name="fMemberPermission" Type="int" />
+          <Property Name="fMemberPhone" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tPlayRecord">
+          <Key>
+            <PropertyRef Name="fPlayRecordID" />
+          </Key>
+          <Property Name="fPlayRecordID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fMemberID" Type="int" />
+          <Property Name="fGameID" Type="int" />
+          <Property Name="fPlayDate" Type="datetime" />
+          <Property Name="fPlayLocation" Type="nvarchar" MaxLength="50" />
+          <Property Name="fPlayCount" Type="int" />
+          <Property Name="fPlayDescription" Type="nvarchar(max)" />
+          <Property Name="fKey" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tWishlist">
+          <Key>
+            <PropertyRef Name="fWishlistID" />
+          </Key>
+          <Property Name="fWishlistID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fMemberID" Type="int" />
+          <Property Name="fGameID" Type="int" />
+          <Property Name="fWantToPlay" Type="bit" />
+          <Property Name="fWantToBuy" Type="bit" />
+          <Property Name="fWantToSale" Type="bit" />
+          <Property Name="fOwn" Type="bit" />
+        </EntityType>
+        <Association Name="FK_收藏清單_會員">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="0..1" />
+          <End Role="tWishlist" Type="Self.tWishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fMemberID" />
+            </Principal>
+            <Dependent Role="tWishlist">
+              <PropertyRef Name="fMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_收藏清單_遊戲資訊">
+          <End Role="tGame" Type="Self.tGame" Multiplicity="0..1" />
+          <End Role="tWishlist" Type="Self.tWishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tGame">
+              <PropertyRef Name="fGameID" />
+            </Principal>
+            <Dependent Role="tWishlist">
+              <PropertyRef Name="fGameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_活動地區對應表_活動區域">
+          <End Role="tActiveRegion" Type="Self.tActiveRegion" Multiplicity="0..1" />
+          <End Role="tActiveRegionVSMember" Type="Self.tActiveRegionVSMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tActiveRegion">
+              <PropertyRef Name="fActiveRegionID" />
+            </Principal>
+            <Dependent Role="tActiveRegionVSMember">
+              <PropertyRef Name="fActiveRegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_活動地區對應表_會員">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="0..1" />
+          <End Role="tActiveRegionVSMember" Type="Self.tActiveRegionVSMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fMemberID" />
+            </Principal>
+            <Dependent Role="tActiveRegionVSMember">
+              <PropertyRef Name="fMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_遊玩紀錄_會員">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="0..1" />
+          <End Role="tPlayRecord" Type="Self.tPlayRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fMemberID" />
+            </Principal>
+            <Dependent Role="tPlayRecord">
+              <PropertyRef Name="fMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_遊玩紀錄_遊戲資訊">
+          <End Role="tGame" Type="Self.tGame" Multiplicity="0..1" />
+          <End Role="tPlayRecord" Type="Self.tPlayRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tGame">
+              <PropertyRef Name="fGameID" />
+            </Principal>
+            <Dependent Role="tPlayRecord">
+              <PropertyRef Name="fGameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GAMEModelStoreContainer">
+          <EntitySet Name="tActiveRegion" EntityType="Self.tActiveRegion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tActiveRegionVSMember" EntityType="Self.tActiveRegionVSMember" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tGame" EntityType="Self.tGame" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tMember" EntityType="Self.tMember" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tPlayRecord" EntityType="Self.tPlayRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tWishlist" EntityType="Self.tWishlist" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_收藏清單_會員" Association="Self.FK_收藏清單_會員">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tWishlist" EntitySet="tWishlist" />
+          </AssociationSet>
+          <AssociationSet Name="FK_收藏清單_遊戲資訊" Association="Self.FK_收藏清單_遊戲資訊">
+            <End Role="tGame" EntitySet="tGame" />
+            <End Role="tWishlist" EntitySet="tWishlist" />
+          </AssociationSet>
+          <AssociationSet Name="FK_活動地區對應表_活動區域" Association="Self.FK_活動地區對應表_活動區域">
+            <End Role="tActiveRegion" EntitySet="tActiveRegion" />
+            <End Role="tActiveRegionVSMember" EntitySet="tActiveRegionVSMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_活動地區對應表_會員" Association="Self.FK_活動地區對應表_會員">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tActiveRegionVSMember" EntitySet="tActiveRegionVSMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_遊玩紀錄_會員" Association="Self.FK_遊玩紀錄_會員">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tPlayRecord" EntitySet="tPlayRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_遊玩紀錄_遊戲資訊" Association="Self.FK_遊玩紀錄_遊戲資訊">
+            <End Role="tGame" EntitySet="tGame" />
+            <End Role="tPlayRecord" EntitySet="tPlayRecord" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GAMEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tActiveRegion">
+          <Key>
+            <PropertyRef Name="fActiveRegionID" />
+          </Key>
+          <Property Name="fActiveRegionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fActiveRegion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tActiveRegionVSMember" Relationship="Self.FK_活動地區對應表_活動區域" FromRole="tActiveRegion" ToRole="tActiveRegionVSMember" />
+        </EntityType>
+        <EntityType Name="tActiveRegionVSMember">
+          <Key>
+            <PropertyRef Name="fActiveRegionVSMemberID" />
+          </Key>
+          <Property Name="fActiveRegionVSMemberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fMemberID" Type="Int32" />
+          <Property Name="fActiveRegionID" Type="Int32" />
+          <NavigationProperty Name="tActiveRegion" Relationship="Self.FK_活動地區對應表_活動區域" FromRole="tActiveRegionVSMember" ToRole="tActiveRegion" />
+          <NavigationProperty Name="tMember" Relationship="Self.FK_活動地區對應表_會員" FromRole="tActiveRegionVSMember" ToRole="tMember" />
+        </EntityType>
+        <EntityType Name="tMember">
+          <Key>
+            <PropertyRef Name="fMemberID" />
+          </Key>
+          <Property Name="fMemberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fMemberAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fMemberPassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fMemberEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fMemberName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fMemberNickName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fMemberGender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fMemberPermission" Type="Int32" />
+          <Property Name="fMemberPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tActiveRegionVSMember" Relationship="Self.FK_活動地區對應表_會員" FromRole="tMember" ToRole="tActiveRegionVSMember" />
+          <NavigationProperty Name="tWishlist" Relationship="Self.FK_收藏清單_會員" FromRole="tMember" ToRole="tWishlist" />
+          <NavigationProperty Name="tPlayRecord" Relationship="Self.FK_遊玩紀錄_會員" FromRole="tMember" ToRole="tPlayRecord" />
+        </EntityType>
+        <EntityType Name="tPlayRecord">
+          <Key>
+            <PropertyRef Name="fPlayRecordID" />
+          </Key>
+          <Property Name="fPlayRecordID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fMemberID" Type="Int32" />
+          <Property Name="fGameID" Type="Int32" />
+          <Property Name="fPlayDate" Type="DateTime" Precision="3" />
+          <Property Name="fPlayLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fPlayCount" Type="Int32" />
+          <Property Name="fPlayDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tMember" Relationship="Self.FK_遊玩紀錄_會員" FromRole="tPlayRecord" ToRole="tMember" />
+          <NavigationProperty Name="tGame" Relationship="GAMEModel.FK_遊玩紀錄_遊戲資訊" FromRole="tPlayRecord" ToRole="tGame" />
+        </EntityType>
+        <EntityType Name="tWishlist">
+          <Key>
+            <PropertyRef Name="fWishlistID" />
+          </Key>
+          <Property Name="fWishlistID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fMemberID" Type="Int32" />
+          <Property Name="fGameID" Type="Int32" />
+          <Property Name="fWantToPlay" Type="Boolean" />
+          <Property Name="fWantToBuy" Type="Boolean" />
+          <Property Name="fWantToSale" Type="Boolean" />
+          <Property Name="fOwn" Type="Boolean" />
+          <NavigationProperty Name="tMember" Relationship="Self.FK_收藏清單_會員" FromRole="tWishlist" ToRole="tMember" />
+          <NavigationProperty Name="tGame" Relationship="GAMEModel.FK_收藏清單_遊戲資訊" FromRole="tWishlist" ToRole="tGame" />
+        </EntityType>
+        <Association Name="FK_活動地區對應表_活動區域">
+          <End Role="tActiveRegion" Type="Self.tActiveRegion" Multiplicity="0..1" />
+          <End Role="tActiveRegionVSMember" Type="Self.tActiveRegionVSMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tActiveRegion">
+              <PropertyRef Name="fActiveRegionID" />
+            </Principal>
+            <Dependent Role="tActiveRegionVSMember">
+              <PropertyRef Name="fActiveRegionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_活動地區對應表_會員">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="0..1" />
+          <End Role="tActiveRegionVSMember" Type="Self.tActiveRegionVSMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fMemberID" />
+            </Principal>
+            <Dependent Role="tActiveRegionVSMember">
+              <PropertyRef Name="fMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_收藏清單_會員">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="0..1" />
+          <End Role="tWishlist" Type="Self.tWishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fMemberID" />
+            </Principal>
+            <Dependent Role="tWishlist">
+              <PropertyRef Name="fMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_遊玩紀錄_會員">
+          <End Role="tMember" Type="Self.tMember" Multiplicity="0..1" />
+          <End Role="tPlayRecord" Type="Self.tPlayRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tMember">
+              <PropertyRef Name="fMemberID" />
+            </Principal>
+            <Dependent Role="tPlayRecord">
+              <PropertyRef Name="fMemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GameEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tActiveRegion" EntityType="Self.tActiveRegion" />
+          <EntitySet Name="tActiveRegionVSMember" EntityType="Self.tActiveRegionVSMember" />
+          <EntitySet Name="tMember" EntityType="Self.tMember" />
+          <EntitySet Name="tPlayRecord" EntityType="Self.tPlayRecord" />
+          <EntitySet Name="tWishlist" EntityType="Self.tWishlist" />
+          <AssociationSet Name="FK_活動地區對應表_活動區域" Association="Self.FK_活動地區對應表_活動區域">
+            <End Role="tActiveRegion" EntitySet="tActiveRegion" />
+            <End Role="tActiveRegionVSMember" EntitySet="tActiveRegionVSMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_活動地區對應表_會員" Association="Self.FK_活動地區對應表_會員">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tActiveRegionVSMember" EntitySet="tActiveRegionVSMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_收藏清單_會員" Association="Self.FK_收藏清單_會員">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tWishlist" EntitySet="tWishlist" />
+          </AssociationSet>
+          <AssociationSet Name="FK_遊玩紀錄_會員" Association="Self.FK_遊玩紀錄_會員">
+            <End Role="tMember" EntitySet="tMember" />
+            <End Role="tPlayRecord" EntitySet="tPlayRecord" />
+          </AssociationSet>
+          <EntitySet Name="tGame" EntityType="GAMEModel.tGame" />
+          <AssociationSet Name="FK_收藏清單_遊戲資訊" Association="GAMEModel.FK_收藏清單_遊戲資訊">
+            <End Role="tGame" EntitySet="tGame" />
+            <End Role="tWishlist" EntitySet="tWishlist" />
+          </AssociationSet>
+          <AssociationSet Name="FK_遊玩紀錄_遊戲資訊" Association="GAMEModel.FK_遊玩紀錄_遊戲資訊">
+            <End Role="tGame" EntitySet="tGame" />
+            <End Role="tPlayRecord" EntitySet="tPlayRecord" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tGame">
+          <Key>
+            <PropertyRef Name="fGameID" />
+          </Key>
+          <Property Name="fGameID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fGameName_TC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fGameName_EN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fMaxPlayer" Type="Byte" />
+          <Property Name="fMinPlayer" Type="Byte" />
+          <Property Name="fGameAge" Type="Int32" />
+          <Property Name="fMaxPlayTime" Type="Byte" />
+          <Property Name="fMinPlayTime" Type="Byte" />
+          <Property Name="fGameDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fCardSize" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fCardCount" Type="Int32" />
+          <Property Name="fPublishYear" Type="Int32" />
+          <Property Name="fRank" Type="Decimal" Precision="18" Scale="1" />
+          <NavigationProperty Name="tWishlist" Relationship="GAMEModel.FK_收藏清單_遊戲資訊" FromRole="tGame" ToRole="tWishlist" />
+          <NavigationProperty Name="tPlayRecord" Relationship="GAMEModel.FK_遊玩紀錄_遊戲資訊" FromRole="tGame" ToRole="tPlayRecord" />
+        </EntityType>
+        <Association Name="FK_收藏清單_遊戲資訊">
+          <End Type="GAMEModel.tGame" Role="tGame" Multiplicity="0..1" />
+          <End Type="GAMEModel.tWishlist" Role="tWishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tGame">
+              <PropertyRef Name="fGameID" />
+            </Principal>
+            <Dependent Role="tWishlist">
+              <PropertyRef Name="fGameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_遊玩紀錄_遊戲資訊">
+          <End Type="GAMEModel.tGame" Role="tGame" Multiplicity="0..1" />
+          <End Type="GAMEModel.tPlayRecord" Role="tPlayRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tGame">
+              <PropertyRef Name="fGameID" />
+            </Principal>
+            <Dependent Role="tPlayRecord">
+              <PropertyRef Name="fGameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GAMEModelStoreContainer" CdmEntityContainer="GameEntities">
+          <EntitySetMapping Name="tActiveRegion">
+            <EntityTypeMapping TypeName="GAMEModel.tActiveRegion">
+              <MappingFragment StoreEntitySet="tActiveRegion">
+                <ScalarProperty Name="fActiveRegionID" ColumnName="fActiveRegionID" />
+                <ScalarProperty Name="fActiveRegion" ColumnName="fActiveRegion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tActiveRegionVSMember">
+            <EntityTypeMapping TypeName="GAMEModel.tActiveRegionVSMember">
+              <MappingFragment StoreEntitySet="tActiveRegionVSMember">
+                <ScalarProperty Name="fActiveRegionVSMemberID" ColumnName="fActiveRegionVSMemberID" />
+                <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+                <ScalarProperty Name="fActiveRegionID" ColumnName="fActiveRegionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tMember">
+            <EntityTypeMapping TypeName="GAMEModel.tMember">
+              <MappingFragment StoreEntitySet="tMember">
+                <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+                <ScalarProperty Name="fMemberAccount" ColumnName="fMemberAccount" />
+                <ScalarProperty Name="fMemberPassWord" ColumnName="fMemberPassWord" />
+                <ScalarProperty Name="fMemberEmail" ColumnName="fMemberEmail" />
+                <ScalarProperty Name="fMemberName" ColumnName="fMemberName" />
+                <ScalarProperty Name="fMemberNickName" ColumnName="fMemberNickName" />
+                <ScalarProperty Name="fMemberGender" ColumnName="fMemberGender" />
+                <ScalarProperty Name="fMemberPermission" ColumnName="fMemberPermission" />
+                <ScalarProperty Name="fMemberPhone" ColumnName="fMemberPhone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tPlayRecord">
+            <EntityTypeMapping TypeName="GAMEModel.tPlayRecord">
+              <MappingFragment StoreEntitySet="tPlayRecord">
+                <ScalarProperty Name="fPlayRecordID" ColumnName="fPlayRecordID" />
+                <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+                <ScalarProperty Name="fGameID" ColumnName="fGameID" />
+                <ScalarProperty Name="fPlayDate" ColumnName="fPlayDate" />
+                <ScalarProperty Name="fPlayLocation" ColumnName="fPlayLocation" />
+                <ScalarProperty Name="fPlayCount" ColumnName="fPlayCount" />
+                <ScalarProperty Name="fPlayDescription" ColumnName="fPlayDescription" />
+                <ScalarProperty Name="fKey" ColumnName="fKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tWishlist">
+            <EntityTypeMapping TypeName="GAMEModel.tWishlist">
+              <MappingFragment StoreEntitySet="tWishlist">
+                <ScalarProperty Name="fWishlistID" ColumnName="fWishlistID" />
+                <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+                <ScalarProperty Name="fGameID" ColumnName="fGameID" />
+                <ScalarProperty Name="fWantToPlay" ColumnName="fWantToPlay" />
+                <ScalarProperty Name="fWantToBuy" ColumnName="fWantToBuy" />
+                <ScalarProperty Name="fWantToSale" ColumnName="fWantToSale" />
+                <ScalarProperty Name="fOwn" ColumnName="fOwn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tGame">
+            <EntityTypeMapping TypeName="GAMEModel.tGame">
+              <MappingFragment StoreEntitySet="tGame">
+                <ScalarProperty Name="fRank" ColumnName="fRank" />
+                <ScalarProperty Name="fPublishYear" ColumnName="fPublishYear" />
+                <ScalarProperty Name="fCardCount" ColumnName="fCardCount" />
+                <ScalarProperty Name="fCardSize" ColumnName="fCardSize" />
+                <ScalarProperty Name="fGameDescription" ColumnName="fGameDescription" />
+                <ScalarProperty Name="fMinPlayTime" ColumnName="fMinPlayTime" />
+                <ScalarProperty Name="fMaxPlayTime" ColumnName="fMaxPlayTime" />
+                <ScalarProperty Name="fGameAge" ColumnName="fGameAge" />
+                <ScalarProperty Name="fMinPlayer" ColumnName="fMinPlayer" />
+                <ScalarProperty Name="fMaxPlayer" ColumnName="fMaxPlayer" />
+                <ScalarProperty Name="fGameName_EN" ColumnName="fGameName_EN" />
+                <ScalarProperty Name="fGameName_TC" ColumnName="fGameName_TC" />
+                <ScalarProperty Name="fGameID" ColumnName="fGameID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

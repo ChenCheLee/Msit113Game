@@ -1,0 +1,164 @@
+﻿
+        body{
+            background-color:#efefef;
+            height:100%;
+            min-height:100%;
+        }
+        #bgImage{
+            background-size:cover;
+            background-position: center;
+        }
+            header {
+            position: fixed;
+            /*top: -58.64px;*/
+            top:0px;
+            left: 0;
+            width: 100%;
+            height: 62.27px;
+            z-index: 1010;
+            transition: all 400ms cubic-bezier(0.215, 0.61, 0.355, 1);
+            }
+            /*#headerNav{
+                position:relative;
+            }*/
+a.headerTitle {
+    /*background: url('@Url.Action("logo1.png","Images",new { area = "" })')no-repeat top left;*/
+    background: url('../Images/logo1.png')no-repeat top left;
+    width: 170px;
+    height: 50px;
+    margin: 5px 0 0 10px;
+    text-indent: -2000em;
+    z-index: 3000;
+    float: left;
+}
+            .navbar-inverse {
+                background-color:#00ccad;
+                border-color: #04b197;
+                position:relative;
+                transition: all 400ms cubic-bezier(0.215, 0.61, 0.355, 1);
+                margin-bottom: 0px;
+            }
+            .open{
+               top:0px;
+            }
+            .unTop{
+                top:-58.63px;
+            }
+            /*.navbar-inverse .navbar-brand {
+                 font-size:24px;
+                font-style:inherit;
+            }*/
+            .navmenu{
+                margin-left:25px;
+                margin-right:25px;
+                width:100px;
+                color: #fcdf3c;
+            }
+            .menu{
+                height:55px;
+                line-height: 2.2;
+                font-size:24px;
+                font-weight: bold;
+                font-family:Microsoft JhengHei;
+                float:left;
+                top:0px;
+        }
+.btnmenu1 {
+    /*background: url('@Url.Action("menu-back1.png","Images",new{area=""})') no-repeat top left;*/
+    background: url('../Images/menu-back1.png')no-repeat top left;
+    width: 85px;
+    outline: 0;
+    z-index: 1000;
+    position: relative;
+}
+.btnmenu2 {
+    /*background: url(@Url.Action("menu-back2.png","Images",new{area=""})) no-repeat top left;*/
+    background: url('../Images/menu-back2.png')no-repeat top left;
+    margin: 0px 0px 0px -3px;
+    z-index: 900;
+    position: fixed;
+    float: left;
+    width: 253px;
+    top: 0px;
+}
+.btnmenu3 {
+    /*background: url(@Url.Action("menu-back3.png","Images",new{area=""})) no-repeat top left;*/
+    background: url('../Images/menu-back3.png')no-repeat top left;
+    margin: 0px 0px 0px -3px;
+    z-index: 800;
+    position: fixed;
+    float: left;
+    width: 423px;
+    text-indent: 213px;
+    text-align: center;
+    top: 0px;
+    color: #fcdf3c;
+}
+.btnmenu4 {
+    /*background: url(@Url.Action("menu-back4.png","Images",new{area=""})) no-repeat top left;*/
+    background: url('../Images/menu-back4.png')no-repeat top left;
+    margin: 0px 0px 0px -3px;
+    z-index: 700;
+    position: fixed;
+    float: left;
+    width: 593px;
+    text-indent: 383px;
+    color: #fcdf3c;
+    text-align: center;
+    top: 0px;
+}
+.btnmenu5 {
+    /*background: url(@Url.Action("menu-back5.png","Images",new{area=""})) no-repeat top left;*/
+    background: url('../Images/menu-back5.png')no-repeat top left;
+    margin: 0px 0px 0px -3px;
+    z-index: 600;
+    position: fixed;
+    float: left;
+    width: 763px;
+    text-indent: 553px;
+    text-align: center;
+    color: #fcdf3c;
+    top: 0px;
+}
+        #subheader{
+             background-color: #fff;
+             margin: 5px 0 0;
+             padding: 0 0.7em;
+             float: right;
+             border-radius: 5px;
+             height:40px;
+        }
+        .GameWikiBar {
+    width: 100%;
+    height: 350px;
+    background-color: #be65ac;
+    color: #ffffff;
+    text-align:center;
+    position:relative;
+}
+.bookmark{
+    position:fixed;
+    left:-200px;
+    top:150px;
+    z-index:1100;
+    transition:all 400ms cubic-bezier(0.215, 0.61, 0.355, 1)
+}
+.bookmark-open{
+    left:0;
+}
+.bookmark-icon{
+    position:relative;
+    background-color:rgba(70, 70, 70,0.7);
+    border-radius:0 5px 5px 0;
+    width:50px;
+    height:50px;
+    float:left;
+}
+.bookmark-menu{
+    position:relative;
+    background-color:rgba(70, 70, 70,0.7);
+    border-radius:0 0 5px 0;
+    width:200px;
+    height:400px;
+    float:left;
+}

@@ -1,0 +1,37 @@
+﻿@model IEnumerable<MVCgroup2.Areas.揪團.Models.tPairJoinMember1> 
+@*@model IEnumerable<MVCgroup2.Models.tPair>*@
+@{
+    ViewBag.Title = "MyPair";
+    
+}
+
+<h2>我的揪團</h2>
+
+
+
+    
+
+    @foreach (var _MyPair in Model)
+    {//List.count 替代2
+     //@list[i].
+         
+<li class="list-group-item list-group-item-heading list-group-item-success">
+    <div id="1">
+        <span class="note" id="tpairID"><label style="color:darkkhaki">揪團流水號:</label>@_MyPair.fmemberID</span>
+        <span class="note1"><button type="button" class="btn btn-success" id="btnli">加入此團</button></span>
+    </div>
+    <div id="2">
+        <span class="note" style="width:20%;display:inline-block;"><label style="color:darkgreen">團名:</label></span>
+        <span class="note1" style="width:40%;display:inline-block;"><label style="color:darkgreen">開團地點:</label></span>
+        @*<span class="note2" id="note2" style="width:40%;display:inline-block;"><label style="color:darkgreen">團長:</label>@_MyPair.tMember.fMemberName</span>
+            </div>
+            <div id="3">
+                <span class="note" style="width:30%;display:inline-block;"><label style="color:darkgreen">開團日期:</label>@_MyPair.fSquadStartDate</span>
+                <span class="note1" style="width:30%;display:inline-block;"><label style="color:darkgreen">最大人數:</label>@_MyPair.fSquadMinPlayer</span>
+                <span class="note2" style="width:40%;display:inline-block;"><label style="color:darkgreen">目前人數:</label>@_MyPair.tPairJoinMembers.Count</span>*@
+    </div>
+</li>
+}
+
+
+

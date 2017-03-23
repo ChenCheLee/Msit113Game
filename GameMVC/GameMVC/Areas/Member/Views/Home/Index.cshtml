@@ -1,0 +1,111 @@
+﻿@model GameMVC.Models.tMember
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<div class="container">
+    <div class="row">
+        <!--<div class="col-md-3">
+            <nav></nav>
+        </div>-->
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">會員註冊</div>
+                <div class="panel-body">
+                    <!-- 每頁不同的內容從這裡開始 -->
+                  
+                    @using (Html.BeginForm("Index", "Home", new { area = "Member" }, FormMethod.Post, new { @class = "form-horizontal" }))
+                    {
+                        <div class="form-group">
+                            @*<label for="password" class="col-lg-2 control-label">帳號</label>*@
+                            @Html.LabelFor(m => m.fMemberAccount, new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @*<input type="password" id="password" name="password" class="form-control" placeholder="請輸入密碼">*@
+                                @Html.EditorFor(m => m.fMemberAccount, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入帳號" } })
+                                @Html.ValidationMessageFor(m => m.fMemberAccount, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @*<label for="password" class="col-lg-2 control-label">密碼</label>*@
+                            @Html.LabelFor(m => m.fMemberPassWord, new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @*<input type="password" id="password" name="password" class="form-control" placeholder="請輸入密碼">*@
+                                @Html.EditorFor(m => m.fMemberPassWord, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入密碼" } })
+                                @Html.ValidationMessageFor(m => m.fMemberPassWord, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @*<label for="password" class="col-lg-2 control-label">密碼確認</label>*@
+                            @Html.Label("密碼確認", new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @*<input type="password" id="password" name="password" class="form-control" placeholder="請輸入密碼">*@
+                                @Html.TextBox("密碼確認", null,new {@class = "form-control", placeholder = "請輸入密碼" })
+                                @*@Html.ValidationMessageFor(m => m.fMemberPassWord, "", new { @class = "text-danger" })*@
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @*<label for="password" class="col-lg-2 control-label">電話</label>*@
+                            @Html.LabelFor(m => m.fMemberPhone, new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @*<input type="password" id="password" name="password" class="form-control" placeholder="請輸入密碼">*@
+                                @Html.EditorFor(m => m.fMemberPhone, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入電話" } })
+                                @Html.ValidationMessageFor(m => m.fMemberPhone, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @*<label for="password" class="col-lg-2 control-label">暱稱</label>*@
+                            @Html.LabelFor(m => m.fMemberNickName, new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @*<input type="password" id="password" name="password" class="form-control" placeholder="請輸入密碼">*@
+                                @Html.EditorFor(m => m.fMemberNickName, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入暱稱" } })
+                                @Html.ValidationMessageFor(m => m.fMemberNickName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @*<label for="password" class="col-lg-2 control-label">性別</label>*@
+                            @Html.LabelFor(m => m.fMemberGender, new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @*<input type="password" id="password" name="password" class="form-control" placeholder="請輸入密碼">*@
+                                男
+                                @Html.RadioButtonFor(m => m.fMemberGender, new { htmlAttributes = new { @class = "form-control" } })
+                                女
+                                @Html.RadioButtonFor(m => m.fMemberGender, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(m => m.fMemberGender, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @*<label for="password" class="col-lg-2 control-label">電子郵件</label>*@
+                            @Html.LabelFor(m => m.fMemberEmail, new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @*<input type="password" id="password" name="password" class="form-control" placeholder="請輸入密碼">*@
+                                @Html.EditorFor(m => m.fMemberEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入電子郵件" } })
+                                @Html.ValidationMessageFor(m => m.fMemberEmail, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-10 col-lg-offset-2">
+                                <button type="submit" id="buttonSubmit" class="btn btn-primary">註冊</button>
+                                <button type="reset" id="buttonCancel" class="btn btn-primary">取消</button>
+                                <button type="button" id="buttonClick" class="btn btn-primary">按鈕</button>
+                                <div id="message"></div>
+                            </div>
+
+                        </div>
+                    }
+
+
+                    <!-- 每頁不同的內容到這裡結束 -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="790ea48234004f0eb2d313e6693d74d2" Name="Diagram1">
+        <EntityTypeShape EntityType="GAMEModel.tActiveRegion" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GAMEModel.tActiveRegionVSMember" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GAMEModel.tMember" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GAMEModel.tPlayRecord" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GAMEModel.tWishlist" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
+        <AssociationConnector Association="GAMEModel.FK_活動地區對應表_活動區域" ManuallyRouted="false" />
+        <AssociationConnector Association="GAMEModel.FK_活動地區對應表_會員" ManuallyRouted="false" />
+        <AssociationConnector Association="GAMEModel.FK_收藏清單_會員" ManuallyRouted="false" />
+        <AssociationConnector Association="GAMEModel.FK_遊玩紀錄_會員" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="GAMEModel.tGame" Width="1.5" PointX="5.375" PointY="1" />
+        <AssociationConnector Association="GAMEModel.FK_收藏清單_遊戲資訊" />
+        <AssociationConnector Association="GAMEModel.FK_遊玩紀錄_遊戲資訊" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

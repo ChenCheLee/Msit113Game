@@ -1,0 +1,250 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<W.Areas.Member.ViewModel.PlayRecordGame>
+@{
+    ViewBag.Title = "PlayRecord";
+}
+
+@section styles{
+    
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+    
+}
+
+
+<h2>PlayRecord</h2>
+
+
+<div class="row">
+    <div class="col-lg-7">
+
+
+
+        <table id="table" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.ActionLink(Html.DisplayNameFor(p => p.First().fGameName_TC).ToHtmlString(), "PlayRecord", "Home", new { sortBy = ViewBag.sortModelNumber }, null)
+                    </th>
+                    <th>@Html.DisplayNameFor(p => p.First().fPlayDate)</th>
+                    <th>
+                        @Html.ActionLink(Html.DisplayNameFor(p => p.First().fPlayLocation).ToHtmlString(), "PlayRecord", "Home", new { sortBy = ViewBag.sortUnitCost }, null)
+                    </th>
+                    <th>@Html.DisplayNameFor(p => p.First().fPlayCount)</th>
+                    <th>@Html.DisplayNameFor(p => p.First().fPlayDescription)</th>
+                    <th>編輯</th>
+                    <th>刪除</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var playRecord in Model)
+                {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(p => playRecord.fGameName_TC)
+                            @Html.HiddenFor(p => playRecord.fPlayRecordID)
+                            @Html.HiddenFor(p => playRecord.fMemberID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(p => playRecord.fPlayDate)
+                            @*@Html.HiddenFor(p => playRecord.fKey)*@
+                        </td>
+                        <td>
+                            @Html.DisplayFor(p => playRecord.fPlayLocation)
+                            
+                        </td>
+                        <td>
+                            @Html.DisplayFor(p => playRecord.fPlayCount)
+
+                        </td>
+                        <td>
+                            @Html.DisplayFor(p => playRecord.fPlayDescription)
+                        </td>
+                        <td>
+                            <button class="btn btn-info" type="button" data-fPlayRecordID="@playRecord.fPlayRecordID" data-fMemberID="@playRecord.fMemberID" data-fGameID="@playRecord.fGameID" data-fPlayDate="@playRecord.fPlayDate" data-fPlayLocation="@playRecord.fPlayLocation" data-fPlayCount="@playRecord.fPlayCount" data-fPlayDescription="@playRecord.fPlayDescription" data-fGameName_TC="@playRecord.fGameName_TC"><span class="glyphicon glyphicon-pencil"></span></button>
+                         </td>
+                        <td>
+                            <a href="@Url.Action("DeletePlayRecord","Home",new { PlayRecordId = playRecord.fPlayRecordID })" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                            @*@Html.ActionLink("", "DeletePlayRecord", "Home", new { PlayRecordId = playRecord.fPlayRecordID }, new { @class = "btn btn-danger glyphicon glyphicon-remove" })*@
+                            @*<button class="btn btn-danger" type="button"><span class="glyphicon glyphicon-remove"></span></button>*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @Html.PagedListPager(Model, page => Url.Action("PlayRecord", "Home", new { page, sortBy = Request.QueryString["sortBy"] }), PagedListRenderOptions.PageNumbersOnly)
+
+    </div>
+
+    <div class="col-lg-5">
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">編輯遊玩紀錄</h3>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("AddPlayRecord", "Home", new { area = "Member" }, FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    <div class="form-group">
+
+                        @Html.LabelFor(p => p.First().fGameName_TC, new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+
+                            @{
+                                var games = new SelectList(ViewBag.tGame, "fGameID", "fGameName_TC");
+                            }
+                            @Html.DropDownListFor(p => p.First().fGameID, games, "請選擇", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(p => p.First().fGameID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        
+                        @Html.LabelFor(p => p.First().fPlayDate, new { @class = "col-lg-2 control-label" })
+                        <input type="hidden" id="fMemberID" />
+                        <input type="hidden" id="fPlayRecordID" />
+                        <div class="col-lg-10">
+                            <input type="date" id="fPlayDate" name="fPlayDate" class="form-control">
+                            @*@Html.EditorFor(p => p.First().fPlayDate, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入密碼" } })*@
+                           
+                             @Html.ValidationMessageFor(p => p.First().fPlayDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        @Html.LabelFor(p => p.First().fPlayLocation, new { @class = "col-lg-2 control-label" })
+                        <div class="col-lg-10">
+                            <input type="text" id="fPlayLocation" naem="fPlayLocation" class="form-control">
+                            @*@Html.EditorFor(p => p.First().fPlayLocation, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入電話" } })*@
+                            @Html.ValidationMessageFor(p => p.First().fPlayLocation, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                        <div class="form-group">
+
+                            @Html.LabelFor(p => p.First().fPlayCount, new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                <input type="number" id="fPlayCount" name="fPlayCount" class="form-control">
+                                @*@Html.EditorFor(p => p.First().fPlayCount, new { htmlAttributes = new { @class = "form-control", placeholder = "請輸入暱稱" } })*@
+                                @Html.ValidationMessageFor(p => p.First().fPlayCount, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+
+                            @Html.LabelFor(p => p.First().fPlayDescription, new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @*<input id="text" type="text" />*@
+                                <textarea id="fPlayDescription" name="fPlayDescription" class="form-control"></textarea>
+                                @*@Html.EditorFor(p => p.First().fPlayDescription, new { htmlAttributes = new { @class = "form-control", placeholder = "請描述遊玩過程" } })*@
+                                @Html.ValidationMessageFor(p => p.First().fPlayDescription, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-10 col-lg-offset-2">
+                                <button type="submit" id="buttonSubmit" class="btn btn-primary">新增</button>
+                                
+                                <button type="button" id="buttonUpdate" class="btn btn-primary">修改</button>
+                                <div id="message"></div>
+                            </div>
+
+                        </div>
+                                }
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>
+
+
+@section scripts{
+    
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+    <script>
+        $(document).ready(function () {
+            
+            var btn;
+            $("#buttonUpdate").click(function () {
+                var recordid = $("#fPlayRecordID").val()
+                var memberid = $("#fMemberID").val()
+                var gameid = $("form select>:selected").val()
+                var date=$("#fPlayDate").val()
+                var location=$("#fPlayLocation").val()
+                var count=$("#fPlayCount").val()
+                var description = $("#fPlayDescription").val()
+
+                btn.parent().prev().text(description)
+                btn.parent().prev().prev().text(count)
+                btn.parent().prev().prev().prev().text(location)
+                btn.parent().prev().prev().prev().prev().text(date)
+                btn.parent().prev().prev().prev().prev().prev().text($("form select>:selected").text())
+                $.get("@Url.Action("UpdatePlayRecord", "Home",new { area="Member"})"
+                    , {
+                        "recordid": recordid,
+                        "memberid":memberid,
+                        "gameid": gameid,
+                        "date": date,
+                        "location": location,
+                        "count": count,
+                        "description": description
+                    })
+
+            })
+
+          
+
+            $('#table').on('click', 'button', function () {
+                //var playdate = $(this).attr("data-fPlayDate")
+                //alert($(this).attr("data-fPlayCount"));
+
+                //$(this).parent().prev().text();
+                btn=$(this)
+
+                $("form select").val($(this).attr("data-fgamename_tc"))
+                $("#fPlayDate").val($(this).attr("data-fPlayDate"))
+                $("#fPlayLocation").val($(this).attr("data-fPlayLocation"))
+                $("#fPlayCount").val($(this).attr("data-fPlayCount"))
+                $("#fPlayDescription").text($(this).attr("data-fPlayDescription"))
+                $("#fPlayRecordID").val($(this).attr("data-fPlayRecordID"))
+                $("#fMemberID").val($(this).attr("data-fMemberID"))
+
+            })
+
+
+           
+
+
+          
+            @*$("#buttonUpdate").click(function () {
+                var strJSON = JSON.stringify({
+                    "fPlayRecordID": $("#fPlayRecordID").val(),
+                    "fMemberID": $("#fMemberID").val(),
+                    "fGameID": $("#fGameID>:selected").val(),
+                    "fPlayDate": $("#fPlayDate").val(),
+                    "fPlayLocation": $("#fPlayLocation").val(),
+                    "fPlayCount": $("#fPlayCount").val(count),
+                    "fPlayDescription": $("#fPlayDescription").text()
+                });
+                $.ajax({
+                        url: @Url.Action("UpdatePlayRecord","Home",new { area="Member"}),
+                        type: 'put',
+                        contentType: 'application/json',
+                        data: strJSON
+                    })
+
+            })*@
+
+        })
+    </script>
+   
+    
+    }

@@ -1,0 +1,75 @@
+﻿body {
+}
+.btnmenu1{
+                /*background:url(../Images//menu-back1.png) no-repeat top left;*/
+                background:url(@Url.Action("menu-back1.png","Images",new{area=""})) no-repeat top left;
+                display: block;
+                margin:0px 0px 0px -3px;
+                width:85px;
+                height:55px;
+                        outline: 0;
+                z-index: 1000;
+                position:relative;
+        }
+        .btnmenu2{
+             /*background:url(../Images//menu-back2.png) no-repeat top left;*/
+                background:url(@Url.Action("menu-back2.png","Images",new{area=""})) no-repeat top left;
+                margin:0px 0px 0px -3px;
+                z-index:900;
+                top:0px;
+                position:fixed;
+                float:left;
+                width:253px;
+                height:55px;
+        }
+        .btnmenu3{
+            /*background:url(../Images//menu-back3.png) no-repeat top left;*/
+                background:url(@Url.Action("menu-back3.png","Images",new{area=""})) no-repeat top left;
+                margin:0px 0px 0px -3px;
+                z-index:800;
+                top:0px;
+                position:fixed;
+                float:left;
+                width:423px;
+                height:55px;
+                text-indent:213px;
+                text-align: center;
+                line-height: 2.2;
+                font-size:24px;
+                font-weight: bold;
+                font-family:Microsoft JhengHei;
+        }
+        .btnmenu4{
+            /*background:url(../Images//menu-back4.png) no-repeat top left;*/
+                background:url(@Url.Action("menu-back4.png","Images",new{area=""})) no-repeat top left;
+                margin:0px 0px 0px -3px;
+                z-index:700;
+                top:0px;
+                position:fixed;
+                float:left;
+                width:593px;
+                height:55px;
+                text-indent:383px;
+                text-align: center;
+                line-height: 2.2;
+                font-size:24px;
+                font-weight: bold;
+                font-family:Microsoft JhengHei;
+        }
+        .btnmenu5{
+            /*background:url(../Images//menu-back5.png) no-repeat top left;*/
+                background:url(@Url.Action("menu-back5.png","Images",new{area=""})) no-repeat top left;
+                margin:0px 0px 0px -3px;
+                z-index:600;
+                top:0px;
+                position:fixed;
+                float:left;
+                width:763px;
+                height:55px;
+                text-indent:553px;
+                text-align: center;
+                line-height: 2.2;
+                font-size:24px;
+                font-weight: bold;
+                font-family:Microsoft JhengHei;
+        }

@@ -1,0 +1,49 @@
+﻿
+@model  IEnumerable<GameMVC.Models.tGame>
+    <style>
+        .panel.panel-card .panel-heading{
+            height:140px;
+        }
+        .panel.panel-card .panel-heading img{
+            top:50%;
+        }
+        .panel.panel-card .panel-body{
+            padding-top:0px;
+            margin-right:-10px;
+            height:140px;
+            overflow-y:scroll;
+        }
+        h4{
+            font-weight: bold;
+            font-family:Microsoft JhengHei;
+        }
+        small{
+            font-weight: bold;
+            font-family:Microsoft JhengHei;
+        }
+    </style>
+    <div class="container">
+        <div class="row">
+            @foreach (var game in Model)
+            {
+                <div class="col-sm-6 col-md-3">
+                    <div class="panel panel-default panel-card">
+                        <div class="panel-heading">
+                            <img src='@Url.Action("GetImageByte","Home",new {area="",id=game.fGameID })' />
+                        </div>
+                         <div class="row" style="text-align:center">
+                             <div class="col-xs-12">
+                                <input type="button" value="遊戲頁面" class="btn btn-primary" />
+                            </div>
+                         </div>
+                        <div class="panel-body text-center">
+                            <h4 class="panel-header">@Html.DisplayFor(g => game.fGameName_TC)</h4>
+                            <small>@Html.DisplayFor(g => game.fGameDescription)</small>
+                        </div>
+
+                    </div>
+                </div>
+            }              
+        </div>
+    </div>
+

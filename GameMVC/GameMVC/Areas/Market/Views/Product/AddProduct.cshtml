@@ -1,0 +1,94 @@
+﻿@model Market.Areas.Market.Models.tTrade
+
+@{
+    ViewBag.Title = "AddProduct";
+}
+
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>Add Product</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="container">
+    <div class="row">
+        <h3 id="order_review_heading">新增上架商品</h3>
+        <div style="position: relative;"></div>
+        @using (Html.BeginForm("AddProduct", "Product", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+        {
+            <div class="form-group">
+                @Html.LabelFor(t => t.fProductID, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(t => t.fProductID, new { HtmlAttributes = new { placeholder = "商品", @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(t => t.fProductIfon, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(t => t.fProductIfon, new { HtmlAttributes = new { placeholder = "商品資訊....", @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(t => t.fProductDescription, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.DropDownList("fProductDescription", new List<SelectListItem>
+               {
+                   new SelectListItem { Text="NEW",Value="NEW"},
+                   new SelectListItem { Text="LIKE NEW",Value="LIKE NEW"},
+                   new SelectListItem { Text="GOOD",Value="GOOD"},
+                   new SelectListItem { Text="VERY GOOD",Value="VERY GOOD"},
+                   new SelectListItem { Text="ACCEPTABLE",Value="ACCEPTABLE"},
+                   new SelectListItem { Text="UNACCEPTABLE",Value="UNACCEPTABLE"},
+               }, "請選擇", new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(t => t.fProductQuantity, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(t => t.fProductQuantity, new { HtmlAttributes = new { placeholder = "1", @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(t => t.fProductPrice, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(t => t.fProductPrice, new { HtmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(t => t.fProductRegion, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(t => t.fProductRegion, new { HtmlAttributes = new { placeholder = "TW", @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(t => t.fPayment, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(t => t.fPayment, new { HtmlAttributes = new { placeholder = "付款方式", @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(t => t.fSalerContact, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(t => t.fSalerContact, new { HtmlAttributes = new { placeholder = "聯絡方式", @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.fProductPicture, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.ValidationMessageFor(p => p.fProductPicture, "", new { @class = "text-danger" })
+                    <input type="file" name="ProductImage" class="form-control" />
+                    @ViewBag.message
+                </div>
+            </div>
+            <div class="form-row place-order">
+                <input type="submit" data-value="Place order" value="上架" id="onshelf" name="onshelf" class="button alt">
+            </div>
+        }
+    </div>
+</div>

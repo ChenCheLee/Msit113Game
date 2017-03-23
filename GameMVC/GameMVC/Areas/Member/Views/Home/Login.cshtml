@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+@section styles{
+  <style>
+    .form-signin > button {
+        width: 85%;
+    }
+  </style> 
+}
+
+<hr />
+<div class="container">
+    <h2>Login</h2>
+    <div class="row">
+        <div class="col-lg-4"></div>
+
+        <div class="col-lg-4">
+
+            <div class="container">
+
+                <form class="form-signin" method="post">
+                    <h2 class="form-signin-heading">Please sign in</h2>
+                    <label for="inputEmail" class="sr-only">Email address</label>
+                    <input type="text" id="inputEmail" class="form-control" name="fMemberAccount" placeholder="請輸入帳號" required autofocus>
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input type="password" id="inputPassword" name="fMemberPassWord" class="form-control" placeholder="Password" required>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="remember" value="yes"> Remember me
+                        </label>
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                    @Html.ActionLink("註冊", "Index", "Home", new { area = "Member" }, new { @class = "btn btn-lg btn-success btn-block", style = "width:85%" })
+                    <div>@ViewBag.message</div>
+                </form>
+
+            </div>
+
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+
+</div>

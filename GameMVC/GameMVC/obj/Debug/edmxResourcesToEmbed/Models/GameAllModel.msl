@@ -1,0 +1,319 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GameAllModelStoreContainer" CdmEntityContainer="GameAllEntities">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="GameAllModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tActiveRegion">
+      <EntityTypeMapping TypeName="GameAllModel.tActiveRegion">
+        <MappingFragment StoreEntitySet="tActiveRegion">
+          <ScalarProperty Name="fActiveRegionID" ColumnName="fActiveRegionID" />
+          <ScalarProperty Name="fActiveRegion" ColumnName="fActiveRegion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tActiveRegionVSMember">
+      <EntityTypeMapping TypeName="GameAllModel.tActiveRegionVSMember">
+        <MappingFragment StoreEntitySet="tActiveRegionVSMember">
+          <ScalarProperty Name="fActiveRegionVSMemberID" ColumnName="fActiveRegionVSMemberID" />
+          <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+          <ScalarProperty Name="fActiveRegionID" ColumnName="fActiveRegionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tAD">
+      <EntityTypeMapping TypeName="GameAllModel.tAD">
+        <MappingFragment StoreEntitySet="tAD">
+          <ScalarProperty Name="fADID" ColumnName="fADID" />
+          <ScalarProperty Name="fCompanyName" ColumnName="fCompanyName" />
+          <ScalarProperty Name="fADPicture" ColumnName="fADPicture" />
+          <ScalarProperty Name="fADURL" ColumnName="fADURL" />
+          <ScalarProperty Name="fClickCount" ColumnName="fClickCount" />
+          <ScalarProperty Name="fDonate" ColumnName="fDonate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tArticle">
+      <EntityTypeMapping TypeName="GameAllModel.tArticle">
+        <MappingFragment StoreEntitySet="tArticle">
+          <ScalarProperty Name="fArticleListID" ColumnName="fArticleListID" />
+          <ScalarProperty Name="fArticleTypeID" ColumnName="fArticleTypeID" />
+          <ScalarProperty Name="fAssociationID" ColumnName="fAssociationID" />
+          <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+          <ScalarProperty Name="fArticleHead" ColumnName="fArticleHead" />
+          <ScalarProperty Name="fArticleDescription" ColumnName="fArticleDescription" />
+          <ScalarProperty Name="fArticleDate" ColumnName="fArticleDate" />
+          <ScalarProperty Name="fArticleParentID" ColumnName="fArticleParentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tArticleType">
+      <EntityTypeMapping TypeName="GameAllModel.tArticleType">
+        <MappingFragment StoreEntitySet="tArticleType">
+          <ScalarProperty Name="fArticleTypeID" ColumnName="fArticleTypeID" />
+          <ScalarProperty Name="fArticleTypeName" ColumnName="fArticleTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tBuyRecord">
+      <EntityTypeMapping TypeName="GameAllModel.tBuyRecord">
+        <MappingFragment StoreEntitySet="tBuyRecord">
+          <ScalarProperty Name="fBuyRecordID" ColumnName="fBuyRecordID" />
+          <ScalarProperty Name="fSalerID" ColumnName="fSalerID" />
+          <ScalarProperty Name="fBuyerID" ColumnName="fBuyerID" />
+          <ScalarProperty Name="fProductID" ColumnName="fProductID" />
+          <ScalarProperty Name="fBuyDate" ColumnName="fBuyDate" />
+          <ScalarProperty Name="fBuyCount" ColumnName="fBuyCount" />
+          <ScalarProperty Name="fProductPrice" ColumnName="fProductPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tCart">
+      <EntityTypeMapping TypeName="GameAllModel.tCart">
+        <MappingFragment StoreEntitySet="tCart">
+          <ScalarProperty Name="fCartID" ColumnName="fCartID" />
+          <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+          <ScalarProperty Name="fProductID" ColumnName="fProductID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tDesigner">
+      <EntityTypeMapping TypeName="GameAllModel.tDesigner">
+        <MappingFragment StoreEntitySet="tDesigner">
+          <ScalarProperty Name="fDesignerID" ColumnName="fDesignerID" />
+          <ScalarProperty Name="fDesignerName" ColumnName="fDesignerName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tDesignerVSGame">
+      <EntityTypeMapping TypeName="GameAllModel.tDesignerVSGame">
+        <MappingFragment StoreEntitySet="tDesignerVSGame">
+          <ScalarProperty Name="fDesignerVSGameID" ColumnName="fDesignerVSGameID" />
+          <ScalarProperty Name="fGameID" ColumnName="fGameID" />
+          <ScalarProperty Name="fDesignerID" ColumnName="fDesignerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tGame">
+      <EntityTypeMapping TypeName="GameAllModel.tGame">
+        <MappingFragment StoreEntitySet="tGame">
+          <ScalarProperty Name="fGameID" ColumnName="fGameID" />
+          <ScalarProperty Name="fGameName_TC" ColumnName="fGameName_TC" />
+          <ScalarProperty Name="fGameName_EN" ColumnName="fGameName_EN" />
+          <ScalarProperty Name="fMaxPlayer" ColumnName="fMaxPlayer" />
+          <ScalarProperty Name="fMinPlayer" ColumnName="fMinPlayer" />
+          <ScalarProperty Name="fGameAge" ColumnName="fGameAge" />
+          <ScalarProperty Name="fMaxPlayTime" ColumnName="fMaxPlayTime" />
+          <ScalarProperty Name="fMinPlayTime" ColumnName="fMinPlayTime" />
+          <ScalarProperty Name="fGameDescription" ColumnName="fGameDescription" />
+          <ScalarProperty Name="fCardSize" ColumnName="fCardSize" />
+          <ScalarProperty Name="fCardCount" ColumnName="fCardCount" />
+          <ScalarProperty Name="fPublishYear" ColumnName="fPublishYear" />
+          <ScalarProperty Name="fRank" ColumnName="fRank" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tGameCategories">
+      <EntityTypeMapping TypeName="GameAllModel.tGameCategories">
+        <MappingFragment StoreEntitySet="tGameCategories">
+          <ScalarProperty Name="fGameCategoriesID" ColumnName="fGameCategoriesID" />
+          <ScalarProperty Name="fGameCategoriesName" ColumnName="fGameCategoriesName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tGameCategoriesVSGame">
+      <EntityTypeMapping TypeName="GameAllModel.tGameCategoriesVSGame">
+        <MappingFragment StoreEntitySet="tGameCategoriesVSGame">
+          <ScalarProperty Name="fGameCategoriesVSGameID" ColumnName="fGameCategoriesVSGameID" />
+          <ScalarProperty Name="fGameID" ColumnName="fGameID" />
+          <ScalarProperty Name="fGameCategoriesID" ColumnName="fGameCategoriesID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tGameFile">
+      <EntityTypeMapping TypeName="GameAllModel.tGameFile">
+        <MappingFragment StoreEntitySet="tGameFile">
+          <ScalarProperty Name="fGameFileID" ColumnName="fGameFileID" />
+          <ScalarProperty Name="fGameFileType" ColumnName="fGameFileType" />
+          <ScalarProperty Name="fGameFileName" ColumnName="fGameFileName" />
+          <ScalarProperty Name="fGameID" ColumnName="fGameID" />
+          <ScalarProperty Name="fGameFileSite" ColumnName="fGameFileSite" />
+          <ScalarProperty Name="fGameFileBinary" ColumnName="fGameFileBinary" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tGameFileType">
+      <EntityTypeMapping TypeName="GameAllModel.tGameFileType">
+        <MappingFragment StoreEntitySet="tGameFileType">
+          <ScalarProperty Name="fGameFileTypeID" ColumnName="fGameFileTypeID" />
+          <ScalarProperty Name="fGameFileTypeName" ColumnName="fGameFileTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tGameMechanisms">
+      <EntityTypeMapping TypeName="GameAllModel.tGameMechanisms">
+        <MappingFragment StoreEntitySet="tGameMechanisms">
+          <ScalarProperty Name="fGameMechanismsID" ColumnName="fGameMechanismsID" />
+          <ScalarProperty Name="fGameMechanismsName" ColumnName="fGameMechanismsName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tGameMechanismsVSGame">
+      <EntityTypeMapping TypeName="GameAllModel.tGameMechanismsVSGame">
+        <MappingFragment StoreEntitySet="tGameMechanismsVSGame">
+          <ScalarProperty Name="fGameMechanismsVSGameID" ColumnName="fGameMechanismsVSGameID" />
+          <ScalarProperty Name="fGameID" ColumnName="fGameID" />
+          <ScalarProperty Name="fGameMechanismsID" ColumnName="fGameMechanismsID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tGameTheme">
+      <EntityTypeMapping TypeName="GameAllModel.tGameTheme">
+        <MappingFragment StoreEntitySet="tGameTheme">
+          <ScalarProperty Name="fGameThemeID" ColumnName="fGameThemeID" />
+          <ScalarProperty Name="fGameThemeName" ColumnName="fGameThemeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tGameThemeVSGame">
+      <EntityTypeMapping TypeName="GameAllModel.tGameThemeVSGame">
+        <MappingFragment StoreEntitySet="tGameThemeVSGame">
+          <ScalarProperty Name="fGameThemeVSGameID" ColumnName="fGameThemeVSGameID" />
+          <ScalarProperty Name="fGameID" ColumnName="fGameID" />
+          <ScalarProperty Name="fGameThemeID" ColumnName="fGameThemeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tMember">
+      <EntityTypeMapping TypeName="GameAllModel.tMember">
+        <MappingFragment StoreEntitySet="tMember">
+          <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+          <ScalarProperty Name="fMemberAccount" ColumnName="fMemberAccount" />
+          <ScalarProperty Name="fMemberPassWord" ColumnName="fMemberPassWord" />
+          <ScalarProperty Name="fMemberEmail" ColumnName="fMemberEmail" />
+          <ScalarProperty Name="fMemberName" ColumnName="fMemberName" />
+          <ScalarProperty Name="fMemberNickName" ColumnName="fMemberNickName" />
+          <ScalarProperty Name="fMemberGender" ColumnName="fMemberGender" />
+          <ScalarProperty Name="fMemberPermission" ColumnName="fMemberPermission" />
+          <ScalarProperty Name="fMemberPhone" ColumnName="fMemberPhone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tPair">
+      <EntityTypeMapping TypeName="GameAllModel.tPair">
+        <MappingFragment StoreEntitySet="tPair">
+          <ScalarProperty Name="fPairID" ColumnName="fPairID" />
+          <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+          <ScalarProperty Name="fSquadName" ColumnName="fSquadName" />
+          <ScalarProperty Name="fSquadStartDate" ColumnName="fSquadStartDate" />
+          <ScalarProperty Name="fSquadEndDate" ColumnName="fSquadEndDate" />
+          <ScalarProperty Name="fSquadMaxPlayer" ColumnName="fSquadMaxPlayer" />
+          <ScalarProperty Name="fSquadMinPlayer" ColumnName="fSquadMinPlayer" />
+          <ScalarProperty Name="fSquadMember" ColumnName="fSquadMember" />
+          <ScalarProperty Name="fPlayLocation" ColumnName="fPlayLocation" />
+          <ScalarProperty Name="fSquadDescription" ColumnName="fSquadDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tPairJoinMember">
+      <EntityTypeMapping TypeName="GameAllModel.tPairJoinMember">
+        <MappingFragment StoreEntitySet="tPairJoinMember">
+          <ScalarProperty Name="fPairJoinMemberID" ColumnName="fPairJoinMemberID" />
+          <ScalarProperty Name="fPairID" ColumnName="fPairID" />
+          <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tPairRecord">
+      <EntityTypeMapping TypeName="GameAllModel.tPairRecord">
+        <MappingFragment StoreEntitySet="tPairRecord">
+          <ScalarProperty Name="fPairRecordID" ColumnName="fPairRecordID" />
+          <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+          <ScalarProperty Name="fPairID" ColumnName="fPairID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tPlayRecord">
+      <EntityTypeMapping TypeName="GameAllModel.tPlayRecord">
+        <MappingFragment StoreEntitySet="tPlayRecord">
+          <ScalarProperty Name="fPlayRecordID" ColumnName="fPlayRecordID" />
+          <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+          <ScalarProperty Name="fGameID" ColumnName="fGameID" />
+          <ScalarProperty Name="fPlayDate" ColumnName="fPlayDate" />
+          <ScalarProperty Name="fPlayLocation" ColumnName="fPlayLocation" />
+          <ScalarProperty Name="fPlayCount" ColumnName="fPlayCount" />
+          <ScalarProperty Name="fPlayDescription" ColumnName="fPlayDescription" />
+          <ScalarProperty Name="fKey" ColumnName="fKey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tPublisher">
+      <EntityTypeMapping TypeName="GameAllModel.tPublisher">
+        <MappingFragment StoreEntitySet="tPublisher">
+          <ScalarProperty Name="fPublisherID" ColumnName="fPublisherID" />
+          <ScalarProperty Name="fPublisherName" ColumnName="fPublisherName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tPublisherVSGame">
+      <EntityTypeMapping TypeName="GameAllModel.tPublisherVSGame">
+        <MappingFragment StoreEntitySet="tPublisherVSGame">
+          <ScalarProperty Name="fPublisherVSGameID" ColumnName="fPublisherVSGameID" />
+          <ScalarProperty Name="fGameID" ColumnName="fGameID" />
+          <ScalarProperty Name="fPublisherID" ColumnName="fPublisherID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tScoreRecord">
+      <EntityTypeMapping TypeName="GameAllModel.tScoreRecord">
+        <MappingFragment StoreEntitySet="tScoreRecord">
+          <ScalarProperty Name="fScoreRecordID" ColumnName="fScoreRecordID" />
+          <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+          <ScalarProperty Name="fGameID" ColumnName="fGameID" />
+          <ScalarProperty Name="fScore" ColumnName="fScore" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tTrade">
+      <EntityTypeMapping TypeName="GameAllModel.tTrade">
+        <MappingFragment StoreEntitySet="tTrade">
+          <ScalarProperty Name="fTradeID" ColumnName="fTradeID" />
+          <ScalarProperty Name="fSalerID" ColumnName="fSalerID" />
+          <ScalarProperty Name="fProductID" ColumnName="fProductID" />
+          <ScalarProperty Name="fProductPicture" ColumnName="fProductPicture" />
+          <ScalarProperty Name="fProductIfon" ColumnName="fProductIfon" />
+          <ScalarProperty Name="fProductPrice" ColumnName="fProductPrice" />
+          <ScalarProperty Name="fOnshelfDate" ColumnName="fOnshelfDate" />
+          <ScalarProperty Name="fProductQuantity" ColumnName="fProductQuantity" />
+          <ScalarProperty Name="fProductDescription" ColumnName="fProductDescription" />
+          <ScalarProperty Name="fProductRegion" ColumnName="fProductRegion" />
+          <ScalarProperty Name="fPayment" ColumnName="fPayment" />
+          <ScalarProperty Name="fSalerContact" ColumnName="fSalerContact" />
+          <ScalarProperty Name="fPickup" ColumnName="fPickup" />
+          <ScalarProperty Name="fKey" ColumnName="fKey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tWishlist">
+      <EntityTypeMapping TypeName="GameAllModel.tWishlist">
+        <MappingFragment StoreEntitySet="tWishlist">
+          <ScalarProperty Name="fWishlistID" ColumnName="fWishlistID" />
+          <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+          <ScalarProperty Name="fGameID" ColumnName="fGameID" />
+          <ScalarProperty Name="fWantToPlay" ColumnName="fWantToPlay" />
+          <ScalarProperty Name="fWantToBuy" ColumnName="fWantToBuy" />
+          <ScalarProperty Name="fWantToSale" ColumnName="fWantToSale" />
+          <ScalarProperty Name="fOwn" ColumnName="fOwn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

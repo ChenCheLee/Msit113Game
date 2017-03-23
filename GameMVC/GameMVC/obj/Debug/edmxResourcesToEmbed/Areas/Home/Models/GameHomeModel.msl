@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GAMEModelStoreContainer" CdmEntityContainer="GameHomeEntities">
+    <EntitySetMapping Name="tGame">
+      <EntityTypeMapping TypeName="GAMEModel.tGame">
+        <MappingFragment StoreEntitySet="tGame">
+          <ScalarProperty Name="fGameID" ColumnName="fGameID" />
+          <ScalarProperty Name="fGameName_TC" ColumnName="fGameName_TC" />
+          <ScalarProperty Name="fGameName_EN" ColumnName="fGameName_EN" />
+          <ScalarProperty Name="fMaxPlayer" ColumnName="fMaxPlayer" />
+          <ScalarProperty Name="fMinPlayer" ColumnName="fMinPlayer" />
+          <ScalarProperty Name="fGameAge" ColumnName="fGameAge" />
+          <ScalarProperty Name="fMaxPlayTime" ColumnName="fMaxPlayTime" />
+          <ScalarProperty Name="fMinPlayTime" ColumnName="fMinPlayTime" />
+          <ScalarProperty Name="fGameDescription" ColumnName="fGameDescription" />
+          <ScalarProperty Name="fCardSize" ColumnName="fCardSize" />
+          <ScalarProperty Name="fCardCount" ColumnName="fCardCount" />
+          <ScalarProperty Name="fPublishYear" ColumnName="fPublishYear" />
+          <ScalarProperty Name="fRank" ColumnName="fRank" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tGameFile">
+      <EntityTypeMapping TypeName="GAMEModel.tGameFile">
+        <MappingFragment StoreEntitySet="tGameFile">
+          <ScalarProperty Name="fGameFileID" ColumnName="fGameFileID" />
+          <ScalarProperty Name="fGameFileType" ColumnName="fGameFileType" />
+          <ScalarProperty Name="fGameFileName" ColumnName="fGameFileName" />
+          <ScalarProperty Name="fGameID" ColumnName="fGameID" />
+          <ScalarProperty Name="fGameFileSite" ColumnName="fGameFileSite" />
+          <ScalarProperty Name="fGameFileBinary" ColumnName="fGameFileBinary" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tGameFileType">
+      <EntityTypeMapping TypeName="GAMEModel.tGameFileType">
+        <MappingFragment StoreEntitySet="tGameFileType">
+          <ScalarProperty Name="fGameFileTypeID" ColumnName="fGameFileTypeID" />
+          <ScalarProperty Name="fGameFileTypeName" ColumnName="fGameFileTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

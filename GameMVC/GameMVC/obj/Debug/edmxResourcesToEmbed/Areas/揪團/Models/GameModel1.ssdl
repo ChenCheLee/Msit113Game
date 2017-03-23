@@ -1,0 +1,799 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GAMEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tActiveRegion">
+    <Key>
+      <PropertyRef Name="fActiveRegionID" />
+    </Key>
+    <Property Name="fActiveRegionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fActiveRegion" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tActiveRegionVSMember">
+    <Key>
+      <PropertyRef Name="fActiveRegionVSMemberID" />
+    </Key>
+    <Property Name="fActiveRegionVSMemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fMemberID" Type="int" />
+    <Property Name="fActiveRegionID" Type="int" />
+  </EntityType>
+  <EntityType Name="tAD">
+    <Key>
+      <PropertyRef Name="fADID" />
+    </Key>
+    <Property Name="fADID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fCompanyName" Type="nvarchar" MaxLength="50" />
+    <Property Name="fADPicture" Type="nvarchar" MaxLength="50" />
+    <Property Name="fADURL" Type="nvarchar" MaxLength="50" />
+    <Property Name="fClickCount" Type="int" />
+    <Property Name="fDonate" Type="money" />
+  </EntityType>
+  <EntityType Name="tArticle">
+    <Key>
+      <PropertyRef Name="fArticleListID" />
+    </Key>
+    <Property Name="fArticleListID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fArticleTypeID" Type="int" />
+    <Property Name="fAssociationID" Type="int" />
+    <Property Name="fMemberID" Type="int" />
+    <Property Name="fArticleHead" Type="nvarchar" MaxLength="50" />
+    <Property Name="fArticleDescription" Type="nvarchar(max)" />
+    <Property Name="fArticleDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="fArticleParentID" Type="int" />
+  </EntityType>
+  <EntityType Name="tArticleType">
+    <Key>
+      <PropertyRef Name="fArticleTypeID" />
+    </Key>
+    <Property Name="fArticleTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fArticleTypeName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tBuyRecord">
+    <Key>
+      <PropertyRef Name="fBuyRecordID" />
+    </Key>
+    <Property Name="fBuyRecordID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fSalerID" Type="int" Nullable="false" />
+    <Property Name="fBuyerID" Type="int" />
+    <Property Name="fProductID" Type="int" Nullable="false" />
+    <Property Name="fBuyDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="fBuyCount" Type="int" />
+    <Property Name="fProductPrice" Type="int" />
+  </EntityType>
+  <EntityType Name="tCart">
+    <Key>
+      <PropertyRef Name="fCartID" />
+    </Key>
+    <Property Name="fCartID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fMemberID" Type="int" Nullable="false" />
+    <Property Name="fProductID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tDesigner">
+    <Key>
+      <PropertyRef Name="fDesignerID" />
+    </Key>
+    <Property Name="fDesignerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fDesignerName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tDesignerVSGame">
+    <Key>
+      <PropertyRef Name="fDesignerVSGameID" />
+    </Key>
+    <Property Name="fDesignerVSGameID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fGameID" Type="int" />
+    <Property Name="fDesignerID" Type="int" />
+  </EntityType>
+  <EntityType Name="tGame">
+    <Key>
+      <PropertyRef Name="fGameID" />
+    </Key>
+    <Property Name="fGameID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fGameName_TC" Type="nvarchar(max)" />
+    <Property Name="fGameName_EN" Type="nvarchar(max)" />
+    <Property Name="fMaxPlayer" Type="tinyint" />
+    <Property Name="fMinPlayer" Type="tinyint" />
+    <Property Name="fGameAge" Type="int" />
+    <Property Name="fMaxPlayTime" Type="tinyint" />
+    <Property Name="fMinPlayTime" Type="tinyint" />
+    <Property Name="fGameDescription" Type="nvarchar(max)" />
+    <Property Name="fCardSize" Type="nvarchar" MaxLength="50" />
+    <Property Name="fCardCount" Type="int" />
+    <Property Name="fPublishYear" Type="int" />
+    <Property Name="fRank" Type="decimal" Precision="18" Scale="1" />
+  </EntityType>
+  <EntityType Name="tGameCategories">
+    <Key>
+      <PropertyRef Name="fGameCategoriesID" />
+    </Key>
+    <Property Name="fGameCategoriesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fGameCategoriesName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tGameCategoriesVSGame">
+    <Key>
+      <PropertyRef Name="fGameCategoriesVSGameID" />
+    </Key>
+    <Property Name="fGameCategoriesVSGameID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fGameID" Type="int" />
+    <Property Name="fGameCategoriesID" Type="int" />
+  </EntityType>
+  <EntityType Name="tGameFile">
+    <Key>
+      <PropertyRef Name="fGameFileID" />
+    </Key>
+    <Property Name="fGameFileID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fGameFileType" Type="int" />
+    <Property Name="fGameFileName" Type="nvarchar(max)" />
+    <Property Name="fGameID" Type="int" />
+    <Property Name="fGameFileSite" Type="nvarchar(max)" />
+    <Property Name="fGameFileBinary" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tGameFileType">
+    <Key>
+      <PropertyRef Name="fGameFileTypeID" />
+    </Key>
+    <Property Name="fGameFileTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fGameFileTypeName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tGameMechanisms">
+    <Key>
+      <PropertyRef Name="fGameMechanismsID" />
+    </Key>
+    <Property Name="fGameMechanismsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fGameMechanismsName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tGameMechanismsVSGame">
+    <Key>
+      <PropertyRef Name="fGameMechanismsVSGameID" />
+    </Key>
+    <Property Name="fGameMechanismsVSGameID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fGameID" Type="int" Nullable="false" />
+    <Property Name="fGameMechanismsID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tGameTheme">
+    <Key>
+      <PropertyRef Name="fGameThemeID" />
+    </Key>
+    <Property Name="fGameThemeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fGameThemeName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tGameThemeVSGame">
+    <Key>
+      <PropertyRef Name="fGameThemeVSGameID" />
+    </Key>
+    <Property Name="fGameThemeVSGameID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fGameID" Type="int" />
+    <Property Name="fGameThemeID" Type="int" />
+  </EntityType>
+  <EntityType Name="tMember">
+    <Key>
+      <PropertyRef Name="fMemberID" />
+    </Key>
+    <Property Name="fMemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fMemberAccount" Type="nvarchar" MaxLength="50" />
+    <Property Name="fMemberPassWord" Type="nvarchar" MaxLength="50" />
+    <Property Name="fMemberEmail" Type="nvarchar(max)" />
+    <Property Name="fMemberName" Type="nvarchar" MaxLength="50" />
+    <Property Name="fMemberNickName" Type="nvarchar" MaxLength="50" />
+    <Property Name="fMemberGender" Type="nvarchar" MaxLength="50" />
+    <Property Name="fMemberPermission" Type="int" />
+    <Property Name="fMemberPhone" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tPair">
+    <Key>
+      <PropertyRef Name="fPairID" />
+    </Key>
+    <Property Name="fPairID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fMemberID" Type="int" Nullable="false" />
+    <Property Name="fSquadName" Type="nvarchar" MaxLength="50" />
+    <Property Name="fSquadStartDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="fSquadEndDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="fSquadMaxPlayer" Type="int" />
+    <Property Name="fSquadMinPlayer" Type="int" />
+    <Property Name="fSquadMember" Type="varchar(max)" />
+    <Property Name="fPlayLocation" Type="nvarchar" MaxLength="50" />
+    <Property Name="fSquadDescription" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tPairJoinMember">
+    <Key>
+      <PropertyRef Name="fPairJoinMemberID" />
+    </Key>
+    <Property Name="fPairJoinMemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fPairID" Type="int" />
+    <Property Name="fMemberID" Type="int" />
+  </EntityType>
+  <EntityType Name="tPairRecord">
+    <Key>
+      <PropertyRef Name="fPairRecordID" />
+    </Key>
+    <Property Name="fPairRecordID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fMemberID" Type="int" Nullable="false" />
+    <Property Name="fPairID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tPlayRecord">
+    <Key>
+      <PropertyRef Name="fPlayRecordID" />
+    </Key>
+    <Property Name="fPlayRecordID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fMemberID" Type="int" />
+    <Property Name="fGameID" Type="int" />
+    <Property Name="fPlayDate" Type="datetime" />
+    <Property Name="fPlayLocation" Type="nvarchar" MaxLength="50" />
+    <Property Name="fPlayCount" Type="int" />
+    <Property Name="fPlayDescription" Type="nvarchar(max)" />
+    <Property Name="fKey" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tPublisher">
+    <Key>
+      <PropertyRef Name="fPublisherID" />
+    </Key>
+    <Property Name="fPublisherID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fPublisherName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tPublisherVSGame">
+    <Key>
+      <PropertyRef Name="fPublisherVSGameID" />
+    </Key>
+    <Property Name="fPublisherVSGameID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fGameID" Type="int" />
+    <Property Name="fPublisherID" Type="int" />
+  </EntityType>
+  <EntityType Name="tScoreRecord">
+    <Key>
+      <PropertyRef Name="fScoreRecordID" />
+    </Key>
+    <Property Name="fScoreRecordID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fMemberID" Type="int" />
+    <Property Name="fGameID" Type="int" />
+    <Property Name="fScore" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="tTrade">
+    <Key>
+      <PropertyRef Name="fTradeID" />
+    </Key>
+    <Property Name="fTradeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fSalerID" Type="int" Nullable="false" />
+    <Property Name="fProductID" Type="int" Nullable="false" />
+    <Property Name="fProductPicture" Type="varbinary(max)" />
+    <Property Name="fProductIfon" Type="nvarchar" MaxLength="50" />
+    <Property Name="fProductPrice" Type="int" />
+    <Property Name="fOnshelfDate" Type="nvarchar" MaxLength="50" />
+    <Property Name="fProductQuantity" Type="int" />
+    <Property Name="fProductDescription" Type="nvarchar" MaxLength="50" />
+    <Property Name="fProductRegion" Type="nchar" MaxLength="10" />
+    <Property Name="fPayment" Type="nvarchar" MaxLength="50" />
+    <Property Name="fSalerContact" Type="nvarchar" MaxLength="50" />
+    <Property Name="fPickup" Type="nvarchar" MaxLength="50" />
+    <Property Name="fKey" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tWishlist">
+    <Key>
+      <PropertyRef Name="fWishlistID" />
+    </Key>
+    <Property Name="fWishlistID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fMemberID" Type="int" />
+    <Property Name="fGameID" Type="int" />
+    <Property Name="fWantToPlay" Type="bit" />
+    <Property Name="fWantToBuy" Type="bit" />
+    <Property Name="fWantToSale" Type="bit" />
+    <Property Name="fOwn" Type="bit" />
+  </EntityType>
+  <Association Name="FK_tBuyRecord_tGame">
+    <End Role="tGame" Type="Self.tGame" Multiplicity="1" />
+    <End Role="tBuyRecord" Type="Self.tBuyRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tGame">
+        <PropertyRef Name="fGameID" />
+      </Principal>
+      <Dependent Role="tBuyRecord">
+        <PropertyRef Name="fProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tPairJoinMember_tMember">
+    <End Role="tMember" Type="Self.tMember" Multiplicity="0..1" />
+    <End Role="tPairJoinMember" Type="Self.tPairJoinMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMember">
+        <PropertyRef Name="fMemberID" />
+      </Principal>
+      <Dependent Role="tPairJoinMember">
+        <PropertyRef Name="fMemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tPairJoinMember_tPair">
+    <End Role="tPair" Type="Self.tPair" Multiplicity="0..1" />
+    <End Role="tPairJoinMember" Type="Self.tPairJoinMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tPair">
+        <PropertyRef Name="fPairID" />
+      </Principal>
+      <Dependent Role="tPairJoinMember">
+        <PropertyRef Name="fPairID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_文章_會員">
+    <End Role="tMember" Type="Self.tMember" Multiplicity="0..1" />
+    <End Role="tArticle" Type="Self.tArticle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMember">
+        <PropertyRef Name="fMemberID" />
+      </Principal>
+      <Dependent Role="tArticle">
+        <PropertyRef Name="fMemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_出版商對應表_出版商">
+    <End Role="tPublisher" Type="Self.tPublisher" Multiplicity="0..1" />
+    <End Role="tPublisherVSGame" Type="Self.tPublisherVSGame" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tPublisher">
+        <PropertyRef Name="fPublisherID" />
+      </Principal>
+      <Dependent Role="tPublisherVSGame">
+        <PropertyRef Name="fPublisherID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_出版商對應表_遊戲資訊">
+    <End Role="tGame" Type="Self.tGame" Multiplicity="0..1" />
+    <End Role="tPublisherVSGame" Type="Self.tPublisherVSGame" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tGame">
+        <PropertyRef Name="fGameID" />
+      </Principal>
+      <Dependent Role="tPublisherVSGame">
+        <PropertyRef Name="fGameID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_收藏清單_會員">
+    <End Role="tMember" Type="Self.tMember" Multiplicity="0..1" />
+    <End Role="tWishlist" Type="Self.tWishlist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMember">
+        <PropertyRef Name="fMemberID" />
+      </Principal>
+      <Dependent Role="tWishlist">
+        <PropertyRef Name="fMemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_收藏清單_遊戲資訊">
+    <End Role="tGame" Type="Self.tGame" Multiplicity="0..1" />
+    <End Role="tWishlist" Type="Self.tWishlist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tGame">
+        <PropertyRef Name="fGameID" />
+      </Principal>
+      <Dependent Role="tWishlist">
+        <PropertyRef Name="fGameID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_活動地區對應表_活動區域">
+    <End Role="tActiveRegion" Type="Self.tActiveRegion" Multiplicity="0..1" />
+    <End Role="tActiveRegionVSMember" Type="Self.tActiveRegionVSMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tActiveRegion">
+        <PropertyRef Name="fActiveRegionID" />
+      </Principal>
+      <Dependent Role="tActiveRegionVSMember">
+        <PropertyRef Name="fActiveRegionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_活動地區對應表_會員">
+    <End Role="tMember" Type="Self.tMember" Multiplicity="0..1" />
+    <End Role="tActiveRegionVSMember" Type="Self.tActiveRegionVSMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMember">
+        <PropertyRef Name="fMemberID" />
+      </Principal>
+      <Dependent Role="tActiveRegionVSMember">
+        <PropertyRef Name="fMemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_配對系統_會員">
+    <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+    <End Role="tPair" Type="Self.tPair" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMember">
+        <PropertyRef Name="fMemberID" />
+      </Principal>
+      <Dependent Role="tPair">
+        <PropertyRef Name="fMemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_配對紀錄_配對系統">
+    <End Role="tPair" Type="Self.tPair" Multiplicity="1" />
+    <End Role="tPairRecord" Type="Self.tPairRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tPair">
+        <PropertyRef Name="fPairID" />
+      </Principal>
+      <Dependent Role="tPairRecord">
+        <PropertyRef Name="fMemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_配對紀錄_會員">
+    <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+    <End Role="tPairRecord" Type="Self.tPairRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMember">
+        <PropertyRef Name="fMemberID" />
+      </Principal>
+      <Dependent Role="tPairRecord">
+        <PropertyRef Name="fMemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_商城_遊戲資訊">
+    <End Role="tGame" Type="Self.tGame" Multiplicity="1" />
+    <End Role="tTrade" Type="Self.tTrade" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tGame">
+        <PropertyRef Name="fGameID" />
+      </Principal>
+      <Dependent Role="tTrade">
+        <PropertyRef Name="fProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_設計師對應表_設計師">
+    <End Role="tDesigner" Type="Self.tDesigner" Multiplicity="0..1" />
+    <End Role="tDesignerVSGame" Type="Self.tDesignerVSGame" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tDesigner">
+        <PropertyRef Name="fDesignerID" />
+      </Principal>
+      <Dependent Role="tDesignerVSGame">
+        <PropertyRef Name="fDesignerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_設計師對應表_遊戲資訊">
+    <End Role="tGame" Type="Self.tGame" Multiplicity="0..1" />
+    <End Role="tDesignerVSGame" Type="Self.tDesignerVSGame" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tGame">
+        <PropertyRef Name="fGameID" />
+      </Principal>
+      <Dependent Role="tDesignerVSGame">
+        <PropertyRef Name="fGameID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_評分紀錄_會員">
+    <End Role="tMember" Type="Self.tMember" Multiplicity="0..1" />
+    <End Role="tScoreRecord" Type="Self.tScoreRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMember">
+        <PropertyRef Name="fMemberID" />
+      </Principal>
+      <Dependent Role="tScoreRecord">
+        <PropertyRef Name="fMemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_評分紀錄_遊戲資訊">
+    <End Role="tGame" Type="Self.tGame" Multiplicity="0..1" />
+    <End Role="tScoreRecord" Type="Self.tScoreRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tGame">
+        <PropertyRef Name="fGameID" />
+      </Principal>
+      <Dependent Role="tScoreRecord">
+        <PropertyRef Name="fGameID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_遊玩紀錄_會員">
+    <End Role="tMember" Type="Self.tMember" Multiplicity="0..1" />
+    <End Role="tPlayRecord" Type="Self.tPlayRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMember">
+        <PropertyRef Name="fMemberID" />
+      </Principal>
+      <Dependent Role="tPlayRecord">
+        <PropertyRef Name="fMemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_遊玩紀錄_遊戲資訊">
+    <End Role="tGame" Type="Self.tGame" Multiplicity="0..1" />
+    <End Role="tPlayRecord" Type="Self.tPlayRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tGame">
+        <PropertyRef Name="fGameID" />
+      </Principal>
+      <Dependent Role="tPlayRecord">
+        <PropertyRef Name="fGameID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_遊戲主題對應表_遊戲主題">
+    <End Role="tGameTheme" Type="Self.tGameTheme" Multiplicity="0..1" />
+    <End Role="tGameThemeVSGame" Type="Self.tGameThemeVSGame" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tGameTheme">
+        <PropertyRef Name="fGameThemeID" />
+      </Principal>
+      <Dependent Role="tGameThemeVSGame">
+        <PropertyRef Name="fGameThemeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_遊戲主題對應表_遊戲資訊">
+    <End Role="tGame" Type="Self.tGame" Multiplicity="0..1" />
+    <End Role="tGameThemeVSGame" Type="Self.tGameThemeVSGame" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tGame">
+        <PropertyRef Name="fGameID" />
+      </Principal>
+      <Dependent Role="tGameThemeVSGame">
+        <PropertyRef Name="fGameID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_遊戲機制對應表_遊戲資訊">
+    <End Role="tGame" Type="Self.tGame" Multiplicity="1" />
+    <End Role="tGameMechanismsVSGame" Type="Self.tGameMechanismsVSGame" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tGame">
+        <PropertyRef Name="fGameID" />
+      </Principal>
+      <Dependent Role="tGameMechanismsVSGame">
+        <PropertyRef Name="fGameID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_遊戲機制對應表_遊戲機制">
+    <End Role="tGameMechanisms" Type="Self.tGameMechanisms" Multiplicity="1" />
+    <End Role="tGameMechanismsVSGame" Type="Self.tGameMechanismsVSGame" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tGameMechanisms">
+        <PropertyRef Name="fGameMechanismsID" />
+      </Principal>
+      <Dependent Role="tGameMechanismsVSGame">
+        <PropertyRef Name="fGameMechanismsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_遊戲檔案_遊戲資訊">
+    <End Role="tGame" Type="Self.tGame" Multiplicity="0..1" />
+    <End Role="tGameFile" Type="Self.tGameFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tGame">
+        <PropertyRef Name="fGameID" />
+      </Principal>
+      <Dependent Role="tGameFile">
+        <PropertyRef Name="fGameID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_遊戲檔案_檔案類型">
+    <End Role="tGameFileType" Type="Self.tGameFileType" Multiplicity="0..1" />
+    <End Role="tGameFile" Type="Self.tGameFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tGameFileType">
+        <PropertyRef Name="fGameFileTypeID" />
+      </Principal>
+      <Dependent Role="tGameFile">
+        <PropertyRef Name="fGameFileType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_遊戲類型對應表_遊戲資訊">
+    <End Role="tGame" Type="Self.tGame" Multiplicity="0..1" />
+    <End Role="tGameCategoriesVSGame" Type="Self.tGameCategoriesVSGame" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tGame">
+        <PropertyRef Name="fGameID" />
+      </Principal>
+      <Dependent Role="tGameCategoriesVSGame">
+        <PropertyRef Name="fGameID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_遊戲類型對應表_遊戲類型">
+    <End Role="tGameCategories" Type="Self.tGameCategories" Multiplicity="0..1" />
+    <End Role="tGameCategoriesVSGame" Type="Self.tGameCategoriesVSGame" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tGameCategories">
+        <PropertyRef Name="fGameCategoriesID" />
+      </Principal>
+      <Dependent Role="tGameCategoriesVSGame">
+        <PropertyRef Name="fGameCategoriesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_銷售紀錄_會員">
+    <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+    <End Role="tBuyRecord" Type="Self.tBuyRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMember">
+        <PropertyRef Name="fMemberID" />
+      </Principal>
+      <Dependent Role="tBuyRecord">
+        <PropertyRef Name="fSalerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_銷售紀錄_會員1">
+    <End Role="tMember" Type="Self.tMember" Multiplicity="0..1" />
+    <End Role="tBuyRecord" Type="Self.tBuyRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMember">
+        <PropertyRef Name="fMemberID" />
+      </Principal>
+      <Dependent Role="tBuyRecord">
+        <PropertyRef Name="fBuyerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GAMEModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tActiveRegion" EntityType="Self.tActiveRegion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tActiveRegionVSMember" EntityType="Self.tActiveRegionVSMember" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tAD" EntityType="Self.tAD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tArticle" EntityType="Self.tArticle" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tArticleType" EntityType="Self.tArticleType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tBuyRecord" EntityType="Self.tBuyRecord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tCart" EntityType="Self.tCart" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tDesigner" EntityType="Self.tDesigner" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tDesignerVSGame" EntityType="Self.tDesignerVSGame" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tGame" EntityType="Self.tGame" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tGameCategories" EntityType="Self.tGameCategories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tGameCategoriesVSGame" EntityType="Self.tGameCategoriesVSGame" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tGameFile" EntityType="Self.tGameFile" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tGameFileType" EntityType="Self.tGameFileType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tGameMechanisms" EntityType="Self.tGameMechanisms" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tGameMechanismsVSGame" EntityType="Self.tGameMechanismsVSGame" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tGameTheme" EntityType="Self.tGameTheme" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tGameThemeVSGame" EntityType="Self.tGameThemeVSGame" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tMember" EntityType="Self.tMember" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tPair" EntityType="Self.tPair" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tPairJoinMember" EntityType="Self.tPairJoinMember" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tPairRecord" EntityType="Self.tPairRecord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tPlayRecord" EntityType="Self.tPlayRecord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tPublisher" EntityType="Self.tPublisher" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tPublisherVSGame" EntityType="Self.tPublisherVSGame" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tScoreRecord" EntityType="Self.tScoreRecord" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tTrade" EntityType="Self.tTrade" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tWishlist" EntityType="Self.tWishlist" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tBuyRecord_tGame" Association="Self.FK_tBuyRecord_tGame">
+      <End Role="tGame" EntitySet="tGame" />
+      <End Role="tBuyRecord" EntitySet="tBuyRecord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tPairJoinMember_tMember" Association="Self.FK_tPairJoinMember_tMember">
+      <End Role="tMember" EntitySet="tMember" />
+      <End Role="tPairJoinMember" EntitySet="tPairJoinMember" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tPairJoinMember_tPair" Association="Self.FK_tPairJoinMember_tPair">
+      <End Role="tPair" EntitySet="tPair" />
+      <End Role="tPairJoinMember" EntitySet="tPairJoinMember" />
+    </AssociationSet>
+    <AssociationSet Name="FK_文章_會員" Association="Self.FK_文章_會員">
+      <End Role="tMember" EntitySet="tMember" />
+      <End Role="tArticle" EntitySet="tArticle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_出版商對應表_出版商" Association="Self.FK_出版商對應表_出版商">
+      <End Role="tPublisher" EntitySet="tPublisher" />
+      <End Role="tPublisherVSGame" EntitySet="tPublisherVSGame" />
+    </AssociationSet>
+    <AssociationSet Name="FK_出版商對應表_遊戲資訊" Association="Self.FK_出版商對應表_遊戲資訊">
+      <End Role="tGame" EntitySet="tGame" />
+      <End Role="tPublisherVSGame" EntitySet="tPublisherVSGame" />
+    </AssociationSet>
+    <AssociationSet Name="FK_收藏清單_會員" Association="Self.FK_收藏清單_會員">
+      <End Role="tMember" EntitySet="tMember" />
+      <End Role="tWishlist" EntitySet="tWishlist" />
+    </AssociationSet>
+    <AssociationSet Name="FK_收藏清單_遊戲資訊" Association="Self.FK_收藏清單_遊戲資訊">
+      <End Role="tGame" EntitySet="tGame" />
+      <End Role="tWishlist" EntitySet="tWishlist" />
+    </AssociationSet>
+    <AssociationSet Name="FK_活動地區對應表_活動區域" Association="Self.FK_活動地區對應表_活動區域">
+      <End Role="tActiveRegion" EntitySet="tActiveRegion" />
+      <End Role="tActiveRegionVSMember" EntitySet="tActiveRegionVSMember" />
+    </AssociationSet>
+    <AssociationSet Name="FK_活動地區對應表_會員" Association="Self.FK_活動地區對應表_會員">
+      <End Role="tMember" EntitySet="tMember" />
+      <End Role="tActiveRegionVSMember" EntitySet="tActiveRegionVSMember" />
+    </AssociationSet>
+    <AssociationSet Name="FK_配對系統_會員" Association="Self.FK_配對系統_會員">
+      <End Role="tMember" EntitySet="tMember" />
+      <End Role="tPair" EntitySet="tPair" />
+    </AssociationSet>
+    <AssociationSet Name="FK_配對紀錄_配對系統" Association="Self.FK_配對紀錄_配對系統">
+      <End Role="tPair" EntitySet="tPair" />
+      <End Role="tPairRecord" EntitySet="tPairRecord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_配對紀錄_會員" Association="Self.FK_配對紀錄_會員">
+      <End Role="tMember" EntitySet="tMember" />
+      <End Role="tPairRecord" EntitySet="tPairRecord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_商城_遊戲資訊" Association="Self.FK_商城_遊戲資訊">
+      <End Role="tGame" EntitySet="tGame" />
+      <End Role="tTrade" EntitySet="tTrade" />
+    </AssociationSet>
+    <AssociationSet Name="FK_設計師對應表_設計師" Association="Self.FK_設計師對應表_設計師">
+      <End Role="tDesigner" EntitySet="tDesigner" />
+      <End Role="tDesignerVSGame" EntitySet="tDesignerVSGame" />
+    </AssociationSet>
+    <AssociationSet Name="FK_設計師對應表_遊戲資訊" Association="Self.FK_設計師對應表_遊戲資訊">
+      <End Role="tGame" EntitySet="tGame" />
+      <End Role="tDesignerVSGame" EntitySet="tDesignerVSGame" />
+    </AssociationSet>
+    <AssociationSet Name="FK_評分紀錄_會員" Association="Self.FK_評分紀錄_會員">
+      <End Role="tMember" EntitySet="tMember" />
+      <End Role="tScoreRecord" EntitySet="tScoreRecord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_評分紀錄_遊戲資訊" Association="Self.FK_評分紀錄_遊戲資訊">
+      <End Role="tGame" EntitySet="tGame" />
+      <End Role="tScoreRecord" EntitySet="tScoreRecord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_遊玩紀錄_會員" Association="Self.FK_遊玩紀錄_會員">
+      <End Role="tMember" EntitySet="tMember" />
+      <End Role="tPlayRecord" EntitySet="tPlayRecord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_遊玩紀錄_遊戲資訊" Association="Self.FK_遊玩紀錄_遊戲資訊">
+      <End Role="tGame" EntitySet="tGame" />
+      <End Role="tPlayRecord" EntitySet="tPlayRecord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_遊戲主題對應表_遊戲主題" Association="Self.FK_遊戲主題對應表_遊戲主題">
+      <End Role="tGameTheme" EntitySet="tGameTheme" />
+      <End Role="tGameThemeVSGame" EntitySet="tGameThemeVSGame" />
+    </AssociationSet>
+    <AssociationSet Name="FK_遊戲主題對應表_遊戲資訊" Association="Self.FK_遊戲主題對應表_遊戲資訊">
+      <End Role="tGame" EntitySet="tGame" />
+      <End Role="tGameThemeVSGame" EntitySet="tGameThemeVSGame" />
+    </AssociationSet>
+    <AssociationSet Name="FK_遊戲機制對應表_遊戲資訊" Association="Self.FK_遊戲機制對應表_遊戲資訊">
+      <End Role="tGame" EntitySet="tGame" />
+      <End Role="tGameMechanismsVSGame" EntitySet="tGameMechanismsVSGame" />
+    </AssociationSet>
+    <AssociationSet Name="FK_遊戲機制對應表_遊戲機制" Association="Self.FK_遊戲機制對應表_遊戲機制">
+      <End Role="tGameMechanisms" EntitySet="tGameMechanisms" />
+      <End Role="tGameMechanismsVSGame" EntitySet="tGameMechanismsVSGame" />
+    </AssociationSet>
+    <AssociationSet Name="FK_遊戲檔案_遊戲資訊" Association="Self.FK_遊戲檔案_遊戲資訊">
+      <End Role="tGame" EntitySet="tGame" />
+      <End Role="tGameFile" EntitySet="tGameFile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_遊戲檔案_檔案類型" Association="Self.FK_遊戲檔案_檔案類型">
+      <End Role="tGameFileType" EntitySet="tGameFileType" />
+      <End Role="tGameFile" EntitySet="tGameFile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_遊戲類型對應表_遊戲資訊" Association="Self.FK_遊戲類型對應表_遊戲資訊">
+      <End Role="tGame" EntitySet="tGame" />
+      <End Role="tGameCategoriesVSGame" EntitySet="tGameCategoriesVSGame" />
+    </AssociationSet>
+    <AssociationSet Name="FK_遊戲類型對應表_遊戲類型" Association="Self.FK_遊戲類型對應表_遊戲類型">
+      <End Role="tGameCategories" EntitySet="tGameCategories" />
+      <End Role="tGameCategoriesVSGame" EntitySet="tGameCategoriesVSGame" />
+    </AssociationSet>
+    <AssociationSet Name="FK_銷售紀錄_會員" Association="Self.FK_銷售紀錄_會員">
+      <End Role="tMember" EntitySet="tMember" />
+      <End Role="tBuyRecord" EntitySet="tBuyRecord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_銷售紀錄_會員1" Association="Self.FK_銷售紀錄_會員1">
+      <End Role="tMember" EntitySet="tMember" />
+      <End Role="tBuyRecord" EntitySet="tBuyRecord" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
